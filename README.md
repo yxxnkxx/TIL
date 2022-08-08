@@ -1,16 +1,14 @@
 # TIL
 
-[HTML](./subpage/HTML.md)
+[HTML](./FrontEnd/HTML.md)
 
-[CSS](./subpage/CSS.md)
+[CSS](./FrontEnd/CSS.md)
 
-[Javascript](./subpage/Javascript.md)
+[Javascript](./FrontEnd/Javascript.md)
 
-[Java](./subpage/Java.md)
+[Java](./Java//Java.md)
 
-[Git](./subpage/Git.md)
-
-[기타](./subpage/기타.md)
+[Git](./기타/Git.md)
 
 
-[Eclipse](./subpage/Eclipse.md)
+[Eclipse](./기타/Eclipse.md)

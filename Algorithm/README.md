@@ -141,6 +141,91 @@ public class SelectionSort {
 </div>
 </details>
 
+<details>
+<summary>카운팅 정렬</summary>
+<div markdown="1">
+
+## 카운팅 정렬
+
+데이터끼리 비교 없이 데이터의 개수를 세어 정렬하는 알고리즘
+
+### 제한
+
+정수나 정수로 표현할 수 있는 자료에 대해서만 한정
+
+데이터의 입력 범위가 제한적인 경우에 효율적
+
+- 데이터의 수는 적지만, 데이터 값의 범위가 큰 경우(ex. 1~10억) count 배열이 메모리를 과다하게 사용하여 비효율적!
+
+### 시간복잡도
+
+O(n+k)
+
+- n: 배열의 길이
+- k: 정수의 최대값
+
+### 과정
+
+1. 정렬할 배열에서 가장 큰 정수를 크기로 하는 count 배열을 선언한다..
+2. 데이터 값이 i인 경우, count[i]를 1씩 증가시킨다.
+3. count가 모두 끝나면, 앞에서부터 누적합하여 count배열을 수정한다.
+    
+![Untitled](./img/countingsort1.jpg))
+    
+4. 기존 배열의 맨 마지막 index부터 정렬을 시작한다. arr[n-1]이 k일 경우, count[k]의 값을 찾아, 그 값을 1감소 시킨 후 해당 값을 index로 하는 위치에 넣는다.
+    
+![Untitled](./img/countingsort2.jpg))
+![Untitled](./img/countingsort3.jpg))
+    
+
+### 자바 구현
+
+```java
+package sort;
+
+import java.util.Arrays;
+
+public class CountingSort {
+	public static void main(String[] args) {
+		int[] arr = { 0, 4, 1, 2, 3, 3, 1, 1 };
+
+		System.out.println(Arrays.toString(countingSort(arr)));
+
+	}
+
+	static int[] countingSort(int[] arr) {
+		// max 값 찾기
+		int max = 0;
+		for (int i = 0; i < arr.length; i++)
+			if (max < arr[i])
+				max = arr[i];
+		int[] count = new int[max + 1];
+
+		// 각 수를 count
+		for (int num : arr) {
+			count[num]++;
+		}
+
+		// 누적합
+		for (int i = 1; i < count.length; i++) {
+			count[i] += count[i - 1];
+		}
+
+		// tmp 배열에 정렬
+		int[] tmp = new int[arr.length];
+
+		for (int i = arr.length - 1; i >= 0; i--) {
+			int idx = --count[arr[i]];
+			tmp[idx] = arr[i];
+		}
+		return tmp;
+	}
+
+}
+```
+</div>
+</details>
+
 </div>
 </details>
 
@@ -150,7 +235,7 @@ public class SelectionSort {
 <h1> 검색 </h1>
 <details>
 <summary>검색</summary>
-
+<div markdown="1">
 
 # 검색
 

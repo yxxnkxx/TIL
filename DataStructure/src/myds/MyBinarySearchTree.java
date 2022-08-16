@@ -17,7 +17,7 @@ public class MyBinarySearchTree {
 			return null; // 검색 실패
 		else if (tNode.item == key)
 			return tNode; // 검색 성공
-		else if (tNode.item < key)
+		else if (key < tNode.item)
 			return searchItem(tNode.left, key);
 		else
 			return searchItem(tNode.right, key);
@@ -79,6 +79,7 @@ public class MyBinarySearchTree {
 	private MyPair deleteMinItem(Node tNode) {
 		if (tNode.left == null)
 			return new MyPair(tNode.item, tNode.right);
+		// 자리를 바꿀 노드의 right를 기존 부모의 left로 연결해줘야 함!
 		else {
 			MyPair pair = deleteMinItem(tNode.left);
 			tNode.left = pair.node;

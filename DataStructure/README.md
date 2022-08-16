@@ -197,7 +197,11 @@ public void remove(int index) {
 
 # Stack 스택
 
-Last in First out
+물건을 쌓아 올리듯 자료를 쌓아 올린 형태의 자료구조
+
+Last in First out: 마지막에 삽입한 자료를 가장 먼저 꺼냄
+
+선형구조(자료 간의 관계가 1대 1의 관계)
 
 맨 위의 원소만 접근 가능(top)
 
@@ -205,26 +209,68 @@ Last in First out
 
 응용: 문자열 뒤집기, postfix 계산
 
+### 메소드
+
+push: 스택에 값을 추가
+
+pop: 스택의 마지막 값을 삭제하고 반환
+
+peek: 스택의 마지막 값을 반환(삭제x)
+
+isEmpty: 스택이 비어있는지 확인
+
 ## push, pop
 
 배열 스택을 이용
 
 ```java
-public class MyArrayStack<E> {
-	private E[] stack;
-	private int topIndex;
+package myds;
 
-	public void push(E item) {
+public class MyArrayStack {
+	private static int[] stack = new int[100];
+	private static int topIndex = -1;;
+
+	public static void main(String[] args) {
+
+	}
+
+	public boolean isFull() {
+		return topIndex == stack.length - 1;
+
+	}
+
+	public boolean isEmpty() {
+		return topIndex == -1;
+	}
+
+	public void push(int item) {
+		if (isFull()) {
+			System.out.println("가득 참");
+			return;
+		}
 		stack[++topIndex] = item;
 	}
 
-	public E pop() {
-		E popItem = stack[topIndex--];
+	public int pop() {
+		if (isEmpty()) {
+			System.out.println("비어있음");
+			return -999;
+		}
+
+		int popItem = stack[topIndex--];
 		return popItem;
 	}
+
 }
 ```
 
+### 활용1. 괄호 검사
+
+### 활용2. 계산기
+
+1. 중위 표현식 → 후위 표현식
+2. 후위 표현식을 계산
+3. 
 </div>
 </details>
 
@@ -236,34 +282,64 @@ public class MyArrayStack<E> {
 
 First in First out (스택과 비교)
 
+줄 서기
+
+### 메소드
+
+add, remove, element: 예외 발생
+
+offer, poll, peek: 값을 반환
+
 ![Untitled](img/queue1.png)
 
 front: 맨 먼저 큐에 들어온 원소, tail: 맨 나중에 큐에 들어온 원소
+
+### 구현
+
+원형 큐
+
+선형 큐는 자료가 삭제될 때마다 front의 위치를 바꿔야 함 → 비효율적
+
+원형큐는 배열을 원형의 형태로 생각하며 front와 rear의 상대적 위치로 큐의 상태를 파악
+
+맨 처음 index에는 값을 담지 않기로 정함! (full과 empty의 차이를 구분하기 위해서)
 
 ```java
 package myds;
 
 public class MyArrayQueue<E> {
 	// 원형 배열 이용
+	private int size = 10;
 	private E[] queue;
 	private int front;
 	private int tail;
-	private int numItems;
-}
+
+	public boolean isEmpty() {
+		return front == tail;
+	}
+
+	public boolean isFull() {
+		return front == (tail + 1) % size;
+	}
 ```
 
 ## 삽입
+
 
 ![Untitled](img/queue2.png)
 
 tail 뒤에 새로운 원소 삽입
 
 ```java
-	// 삽입은 tail에
+// 삽입은 tail에
 	public void enqueue(E item) {
-		this.tail = (tail + 1) % this.queue.length;
-		queue[tail] = item;
-		numItems++;
+		if (isFull()) {
+			return;
+		} else {
+			this.tail = (tail + 1) % this.queue.length;
+			queue[tail] = item;
+		}
+
 	}
 ```
 
@@ -274,14 +350,19 @@ tail 뒤에 새로운 원소 삽입
 맨 앞의 원소 삭제 → 어떤 원소를 삭제할지 묻지 않아도 됨
 
 ```java
-	// 삭제는 front부터
+// 삭제는 front부터
 	public E dequeue() {
+		if (isEmpty()) {
+			return null;
+		}
+
 		E queueFront = queue[front];
 		front = (front + 1) % this.queue.length;
-		numItems--;
+
 		return queueFront;
 	}
 ```
+
 
 </div>
 </details>

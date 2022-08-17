@@ -226,6 +226,90 @@ public class CountingSort {
 </div>
 </details>
 
+
+<details>
+<summary>삽입 정렬 </summary>
+<div markdown="1">
+
+
+## 삽입 정렬
+
+0번째부터 i번째까지 정렬된 배열의 크기를 증가시키며 정렬하는 알고리즘
+
+이미 정렬된 i개짜리 배열에 하나의 원소를 더하여 정렬된 i+1개짜리 배열 만들기!
+
+시간 복잡도: $O(n^2)$
+
+### 과정
+
+i번째 원소를 정렬할 차례
+
+1. i-1번째까지의 원소들은 정렬되어 있음
+2. i-1부터 0까지의 원소들과 i번째 원소(key)를 비교하며, i번째 원소보다 작은 원소를 만나면 break, i번째 원소보다 크다면 해당 원소를 오른쪽으로 한 칸씩 shift
+3. break한 원소 다음 자리에 i번째 원소를 삽입
+4. 1부터 마지막 원소까지 반복
+
+---
+
+1 0번째 원소는 정렬된 상태
+
+![Untitled](img/insert0.png)
+
+i=1, 10 < 60이므로 60을 한 칸 shift
+
+![Untitled](img/insert1.png)
+
+i=2, 3 < 10, 3 < 60이므로 한 칸씩 shift
+
+![Untitled](img/insert2.png)
+
+i=3, 45 < 60, 45 > 10이므로 10에서 break, 45는 10 다음에 삽입
+
+![Untitled](img/insert3.png)
+
+i = 마지막까지 반복
+
+![Untitled](img/insert4.png)
+
+### 자바 구현
+
+```java
+package sort;
+
+import java.util.Arrays;
+
+public class InsertionSort {
+
+	public static void main(String[] args) {
+		int[] arr = new int[] { 60, 10, 3, 45, 7, 24, 1 };
+		insertionSort(arr);
+		System.out.println(Arrays.toString(arr));
+
+	}
+
+	static void insertionSort(int[] arr) {
+		for (int i = 1; i < arr.length; i++) {
+			int key = arr[i];
+			int j;
+			for (j = i - 1; j >= 0; j--) {
+				if (arr[j] <= key)
+					break;
+				else
+					arr[j + 1] = arr[j];
+			}
+			arr[j + 1] = key;
+
+		}
+
+	}
+
+}
+```
+
+</div>
+</details>
+
+
 </div>
 </details>
 

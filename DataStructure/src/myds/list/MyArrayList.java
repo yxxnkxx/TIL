@@ -1,4 +1,4 @@
-package myds;
+package myds.list;
 
 public class MyArrayList<E> implements Comparable<E> {
 	private E[] item;

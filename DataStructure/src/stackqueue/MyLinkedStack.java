@@ -1,4 +1,4 @@
-package myds;
+package stackqueue;
 
 import myds.list.MyLinkedList;
 import myds.list.MyNode;

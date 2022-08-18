@@ -1,4 +1,4 @@
-package myds;
+package stackqueue;
 
 public class MyArrayQueue<E> {
 	// 원형 배열 이용

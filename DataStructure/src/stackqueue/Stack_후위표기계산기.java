@@ -1,4 +1,4 @@
-package myds;
+package stackqueue;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -80,18 +80,15 @@ public class Stack_후위표기계산기 {
 				case '+':
 					numStack.push(num2 + num1);
 					break;
-
 				case '-':
 					numStack.push(num2 - num1);
 					break;
-
 				case '*':
 					numStack.push(num2 * num1);
 					break;
 				case '/':
 					numStack.push(num2 / num1);
 					break;
-
 				}
 			}
 

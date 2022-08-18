@@ -1,11 +1,11 @@
 package myds.list;
 
-class MyNode<E> {
+class DoubleNode<E> {
 	public E data;
-	public MyNode<E> prev;
-	public MyNode<E> next;
+	public DoubleNode<E> prev;
+	public DoubleNode<E> next;
 
-	public MyNode(E data) {
+	public DoubleNode(E data) {
 		this.data = data;
 		this.prev = null;
 		this.next = null;
@@ -14,8 +14,8 @@ class MyNode<E> {
 }
 
 public class DoublyLinkedList<E> {
-	private MyNode<E> head;
-	private MyNode<E> tail;
+	private DoubleNode<E> head;
+	private DoubleNode<E> tail;
 	private int size;
 
 	// 해도그만 안해도 그만
@@ -26,10 +26,10 @@ public class DoublyLinkedList<E> {
 	}
 
 	// 조회
-	public MyNode<E> get(int idx) {
+	public DoubleNode<E> get(int idx) {
 		if (idx < 0 || idx >= size)
 			return null;
-		MyNode<E> curr;
+		DoubleNode<E> curr;
 		// 뒤에서부터
 		if (idx > size / 2) {
 			curr = tail;
@@ -48,7 +48,7 @@ public class DoublyLinkedList<E> {
 
 	// 첫번쨰 노드 삽입
 	public void addFirst(E data) {
-		MyNode<E> node = new MyNode(data);
+		DoubleNode<E> node = new DoubleNode(data);
 		node.next = head;
 		if (head != null)
 			head.prev = node;
@@ -68,7 +68,7 @@ public class DoublyLinkedList<E> {
 			addFirst(data);
 			return;
 		}
-		MyNode<E> node = new MyNode(data);
+		DoubleNode<E> node = new DoubleNode(data);
 		tail.next = node;
 		node.prev = tail;
 		tail = node;
@@ -91,9 +91,9 @@ public class DoublyLinkedList<E> {
 			System.out.println("범위 벗어남");
 			return;
 		}
-		MyNode<E> newNode = new MyNode<E>(data);
-		MyNode<E> prevNode = get(idx - 1);
-		MyNode<E> nextNode = prevNode.next.next;
+		DoubleNode<E> newNode = new DoubleNode<E>(data);
+		DoubleNode<E> prevNode = get(idx - 1);
+		DoubleNode<E> nextNode = prevNode.next.next;
 		prevNode.next = newNode;
 		newNode.prev = prevNode;
 		nextNode.prev = newNode;
@@ -124,14 +124,14 @@ public class DoublyLinkedList<E> {
 		if (idx < 0 || idx >= size)
 			return null; // 예외처리
 
-		MyNode<E> prevNode = get(idx - 1);
+		DoubleNode<E> prevNode = get(idx - 1);
 		size--;
 		E data = prevNode.next.data;
 		if (prevNode.next.next == null) {
 			prevNode.next = null;
 			tail = prevNode;
 		} else {
-			MyNode<E> nextNode = prevNode.next.next;
+			DoubleNode<E> nextNode = prevNode.next.next;
 			prevNode.next = nextNode;
 			nextNode.prev = prevNode;
 		}
@@ -140,7 +140,7 @@ public class DoublyLinkedList<E> {
 
 	// 출력
 	public void printList() {
-		MyNode<E> curr = head;
+		DoubleNode<E> curr = head;
 		if (curr == null) {
 			System.out.println("비어 있음");
 			return;

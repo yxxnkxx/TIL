@@ -1,4 +1,4 @@
-package myds;
+package stackqueue;
 
 import java.util.Scanner;
 import java.util.Stack;

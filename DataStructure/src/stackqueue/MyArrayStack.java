@@ -1,4 +1,4 @@
-package myds;
+package stackqueue;
 
 public class MyArrayStack {
 	private static int[] stack = new int[100];

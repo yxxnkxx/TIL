@@ -21,7 +21,7 @@
 
 <h1>DataStructure</h1>
 
-[DataStructure](./DataStructurePractice/README.md)
+[DataStructure](./DataStructure/README.md)
 
 <h1>Algorithm</h1>
 

@@ -1,11 +1,6 @@
 # Data Structure
-쉽게 배우는 자료구조 with 자바 참고
 
-<details>
-<summary>Array & ArrayList 배열</summary>
-<div markdown="1">
-
-# Array & ArrayList 배열
+# Array& ArrayList 배열
 
 - 같은 종류의 데이터를 저장하기 위한 자료구조
 
@@ -17,7 +12,7 @@ index로 배열의 요소 참조 가능
 
 추가/제거 시 shift 필요
 
-![Untitled](/img/array1.png)
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled.png)
 
 ## 삽입
 
@@ -83,20 +78,13 @@ public int indexOf(E x) {
 	}
 ```
 
-</div>
-</details>
-
-<details>
-<summary>Linked List 연결 리스트 </summary>
-<div markdown="1">
-
 # Linked List 연결 리스트
 
 삽입/제거 시 shift 필요 X
 
 값을 찾을 때, 앞에서부터 순차적으로 탐색
 
-![Untitled](img/linkedlist1.png)
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%201.png)
 
 - 기본 구조
 
@@ -131,7 +119,7 @@ public class MyLinkedList<E> {
 
 ## 삽입
 
-![Untitled](img/linkedlist2.png)
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%202.png)
 
 이전의 Node가 가리키고 있던 next가 삽입 노드를 가리키게 하고, 삽입 노드의 next가 기존의 next값을 가리키게 만든다.
 
@@ -151,7 +139,7 @@ public void add(int index, E item) {
 
 ## **삭제**
 
-![Untitled](img/linkedlist3.png)
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%203.png)
 
 삭제할 Node의 이전 Node가 가리키고 있던 값을 삭제 Node의 next가 가리키고 있던 값으로 옮겨준다.
 
@@ -167,14 +155,6 @@ public void remove(int index) {
 // 에러 처리 필요
 ```
 
-</div>
-</details>
-
-<details>
-<summary>ArrayList와 LinkedList의 비교 </summary>
-<div markdown="1">
-
-
 # ArrayList와 LinkedList의 비교
 
 |  | ArrayList | LinkedList |
@@ -188,13 +168,6 @@ public void remove(int index) {
 | 검색 | Θ(n) (크기 순 정렬시 Θ(log n) | Θ(n) |
 | 추가/삭제 | 느림 | 빠름 |
 
-</div>
-</details>
-
-<details>
-<summary>Stack 스택 </summary>
-<div markdown="1">
-
 # Stack 스택
 
 물건을 쌓아 올리듯 자료를 쌓아 올린 형태의 자료구조
@@ -205,7 +178,7 @@ Last in First out: 마지막에 삽입한 자료를 가장 먼저 꺼냄
 
 맨 위의 원소만 접근 가능(top)
 
-![Untitled](img/stack1.png)
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%204.png)
 
 응용: 문자열 뒤집기, postfix 계산
 
@@ -270,13 +243,6 @@ public class MyArrayStack {
 
 1. 중위 표현식 → 후위 표현식
 2. 후위 표현식을 계산
-   
-</div>
-</details>
-
-<details>
-<summary>Queue 큐 </summary>
-<div markdown="1">
 
 # Queue 큐
 
@@ -290,7 +256,7 @@ add, remove, element: 예외 발생
 
 offer, poll, peek: 값을 반환
 
-![Untitled](img/queue1.png)
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%205.png)
 
 front: 맨 먼저 큐에 들어온 원소, tail: 맨 나중에 큐에 들어온 원소
 
@@ -325,8 +291,7 @@ public class MyArrayQueue<E> {
 
 ## 삽입
 
-
-![Untitled](img/queue2.png)
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%206.png)
 
 tail 뒤에 새로운 원소 삽입
 
@@ -345,7 +310,7 @@ tail 뒤에 새로운 원소 삽입
 
 ## 삭제
 
-![Untitled](img/queue3.png)
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%207.png)
 
 맨 앞의 원소 삭제 → 어떤 원소를 삭제할지 묻지 않아도 됨
 
@@ -362,157 +327,6 @@ tail 뒤에 새로운 원소 삽입
 		return queueFront;
 	}
 ```
-
-
-</div>
-</details>
-
-<details>
-<summary>Heap 힙 </summary>
-<div markdown="1">
-
-
-# Heap 힙
-
-## 우선순위 큐
-
-우선순위를 가진 원소를 삽입할 수 있고, 우선순위가 가장 큰 원소를 빼내줄 수 있는 자료구조
-
-## 힙
-
-대표적인 우선순위 큐, 완전 이진 트리(Complete Binary Tree) 구조 사용
-
-포화 이진 트리(Full Binary Tree): 루트부터 시작해 모든 노드가 정확히 자식 노드를 2개씩 가지면서 꽉 채워진 트리, 노드의 총 수는 $2^k$-1개
-
-완전 이진 트리(Complete Binary Tree)
-
-
-![Untitled](img/heap1.png)
-
-## 힙의 조건
-
-1. 완전 이진 트리
-2. 힙 특성: 모든 노드는 값을 갖고, 자식 노드(들) 값보다 크거나 같다. (최대 힙)
-
-## 힙 배열
-
-![Untitled](img/heap2.png)
-![Untitled](img/heap3.png)
-
-루트 노드부터 순서대로 배열에 담아 관리
-
-## 삽입
-
-A[8]에 원소 8 삽입
-
-1. 배열의 맨 끝에 8을 삽입
-
-![Untitled](img/heap4.png)
-
-1. 8을 자신의 부모 3과 비교 → 8이 더 크므로 자리 교환
-
-![Untitled](img/heap5.png)
-
-1. 다시 자신의 부모 7과 비교 → 8이 더 크므로 자리 교환
-
-![Untitled](img/heap6.png)
-
-1. 자신의 부모 9와 비교 → 9가 더 크므로 자리 확정
-- **스며오르기(percolateUp) → 힙 성질을 충족하도록 자리를 교환하는 작업**
-
-```java
-public void insert(E newItem) {
-		// A[0...n-1]에 newItem을 추가
-		heap[numItems] = newItem;
-		percolateUp(numItems);
-		numItems++;
-
-	}
-
-	public void percolateUp(int i) {
-		int parentIdx = (i - 1) / 2;
-		if (parentIdx >= 0 && ((Comparable<E>) heap[parentIdx]).compareTo(heap[i]) < 0) {
-			E tmp = heap[i];
-			heap[i] = heap[parentIdx];
-			heap[parentIdx] = tmp;
-			percolateUp(parentIdx);
-		} 
-
-	}
-```
-
-## 삭제
-
-힙은 우선순위 큐이므로, 가장 우선순위가 큰 (최대힙에서는 값이 제일 큰) 원소 A[0]가 삭제됨
-
-그러나 바로 A[0]을 삭제하면 힙의 모양이 깨지기 때문에, A[n-1]와 A[0]을 바꿔준 후 A[n-1]을 삭제하고, 다시 힙의 성질을 충족할 수 있도록 원소를 교환하는 과정을 반복한다.
-
-이 과정을 **percolateDown**이라고 한다. 
-
-percolateDown은 percolateUp과 유사하게, 자신의 자식 노드들 중 큰 값과 자신을 비교하며, 자식 노드가 더 클 경우 자리를 바꾸는 것이다. 이 과정은 리프 노드에 이를 때까지 계속된다.
-
-1. A[n-1]과 A[0]을 교환
-2. percolateDown()
-
----
-
-```java
-public E deleteMax() {
-		E max = heap[0];
-		heap[0] = heap[this.numItems - 1]; // 자리 교환
-		this.numItems--; // max값은 배열에서 제외됨
-		percolateDown(this.numItems);
-		return max;
-	}
-
-	public void percolateDown(int i) {
-		int child = 2 * i + 1;
-		int rightChild = 2 * i + 2;
-		if (child <= this.numItems - 1) {
-			if (((Comparable<E>) heap[child]).compareTo(heap[rightChild]) < 0)
-				child = rightChild; // 더 큰 값을 child로 지정
-			if (((Comparable<E>) heap[i]).compareTo(heap[child]) < 0) {
-				E tmp = heap[i];
-				heap[i] = heap[child];
-				heap[child] = tmp;
-				percolateDown(child);
-			}
-
-		}
-	}
-```
-
-## 힙 생성
-
-리프노드가 아닌 노드부터 루트노드까지 힙 조건을 만족하도록 수정함(percolateDown)
-
-최초의 리프노드가 아닌 노드: 맨 마지막 노드의 부모 노드 → 마지막 index가 k라면 (k-1)/2
-
-```java
-public void buildHeap() {
-		if (this.numItems >= 2) {
-			for (int i = (numItems - 2) / 2; i >= 0; i--)
-				percolateDown(i);
-		}
-	}
-```
-
-## 힙 수행시간
-
-`buildHeap()`: Θ(n)
-
-`insert()`: O(log n) - 한 번의 percolateUp (트리의 높이)
-
-`deleteMax()`: O(log n) - 한 번의 percolateDown
-
-</div>
-</details>
-
----
-
-<details>
-<summary>트리 & 이진 탐색 트리</summary>
-<div markdown="1">
 
 # 트리 & 이진 탐색 트리
 
@@ -949,7 +763,7 @@ class MyBinaryTree {
 3. 임의 노드의 키값은 자기 왼쪽 아래에 있는 모든 노드의 키값보다 크고, 오른쪽 아래에 있는 모든 노드의 키값보다 작다.
 4. 좌우 서브 트리도 모두 이진 탐색 트리여야 한다.
 
-![Untitled](img/binarytree1.png)
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%208.png)
 
 ### 노드 객체의 구조
 
@@ -985,13 +799,13 @@ public class Node {
 1. 원소를 삽입할 자리 찾기 (실패하는 검색 1회)
 2. 임의의 리프 노드에서 더 이상 내려갈 곳이 없다는 것을 확인 → x를 그 리프 노드의 자식으로 매단다
     
-    ![Untitled](img/binarytree2.png)
+    ![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%209.png)
     
-    ![Untitled](img/binarytree3.png)
+    ![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2010.png)
     
-    ![Untitled](img/binarytree4.png)
+    ![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2011.png)
     
-    ![Untitled](img/binarytree5.png)
+    ![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2012.png)
     
     구조적으로 검색 알고리즘과 동일함
     
@@ -1001,21 +815,21 @@ public class Node {
     
     r을 삭제
     
-    ![Untitled](img/binarytree6.png)
+    ![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2013.png)
     
     리프 노드라서 그냥 삭제
     
-    ![Untitled](img/binarytree7.png)
+    ![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2014.png)
     
     case 2: 삭제할 노드의 자식 노드가 1개인 경우
     
     r의 부모가 r의 자식을 직접 가리키도록 함
     
-    ![Untitled](img/binarytree8.png)
+    ![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2015.png)
     
     10을 삭제하고 20이 5를 가리키도록 바꿈
     
-    ![Untitled](img/binarytree9.png)
+    ![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2016.png)
     
     case 3: 삭제할 노드의 자식 노드가 2개인 경우
     
@@ -1023,9 +837,9 @@ public class Node {
     
     s를 r자리로 복사하고 s를 삭제한다.
     
-    ![Untitled](img/binarytree10.png)
+    ![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2017.png)
     
-    ![Untitled](img/binarytree11.png)
+    ![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2018.png)
     
 
 삭제가 된 후에도 이진 트리의 성질을 유지하고 있다.
@@ -1198,21 +1012,151 @@ inOrder(r)
 좌서브트리 → 우서브트리 → 루트
 
 ```java
-poserOrder(r)
+postOrder(r)
 	if (r!=null)
 		postOrder(r.left)
 		poserOrder(r.right)
 		r.visited=true
 ```
 
+# Heap 힙
 
-</div>
-</details>
+## 우선순위 큐
 
+우선순위를 가진 원소를 삽입할 수 있고, 우선순위가 가장 큰 원소를 빼내줄 수 있는 자료구조
 
-<details>
-<summary>B-트리 & B+트리</summary>
-<div markdown="1">
+## 힙
+
+대표적인 우선순위 큐, 완전 이진 트리(Complete Binary Tree) 구조 사용
+
+포화 이진 트리(Full Binary Tree): 루트부터 시작해 모든 노드가 정확히 자식 노드를 2개씩 가지면서 꽉 채워진 트리, 노드의 총 수는 $2^k$-1개
+
+완전 이진 트리(Complete Binary Tree): 모든 노드가 자식 노드를 2개씩 가짐, 노드의 개수가 $2^k$-1보다 작을 때 왼쪽부터 차례대로 채운 것
+
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2019.png)
+
+## 힙의 조건
+
+1. 완전 이진 트리
+2. 힙 특성: 모든 노드는 값을 갖고, 자식 노드(들) 값보다 크거나 같다. (최대 힙)
+
+## 힙 배열
+
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2020.png)
+
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2021.png)
+
+루트 노드부터 순서대로 배열에 담아 관리
+
+## 삽입
+
+A[8]에 원소 8 삽입
+
+1. 배열의 맨 끝에 8을 삽입
+
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2022.png)
+
+1. 8을 자신의 부모 3과 비교 → 8이 더 크므로 자리 교환
+
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2023.png)
+
+1. 다시 자신의 부모 7과 비교 → 8이 더 크므로 자리 교환
+
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2024.png)
+
+1. 자신의 부모 9와 비교 → 9가 더 크므로 자리 확정
+- **스며오르기(percolateUp) → 힙 성질을 충족하도록 자리를 교환하는 작업**
+
+```java
+public void insert(E newItem) {
+		// A[0...n-1]에 newItem을 추가
+		heap[numItems] = newItem;
+		percolateUp(numItems);
+		numItems++;
+
+	}
+
+	public void percolateUp(int i) {
+		int parentIdx = (i - 1) / 2;
+		if (parentIdx >= 0 && ((Comparable<E>) heap[parentIdx]).compareTo(heap[i]) < 0) {
+			E tmp = heap[i];
+			heap[i] = heap[parentIdx];
+			heap[parentIdx] = tmp;
+			percolateUp(parentIdx);
+		} 
+
+	}
+```
+
+## 삭제
+
+힙은 우선순위 큐이므로, 가장 우선순위가 큰 (최대힙에서는 값이 제일 큰) 원소 A[0]가 삭제됨
+
+그러나 바로 A[0]을 삭제하면 힙의 모양이 깨지기 때문에, A[n-1]와 A[0]을 바꿔준 후 A[n-1]을 삭제하고, 다시 힙의 성질을 충족할 수 있도록 원소를 교환하는 과정을 반복한다.
+
+이 과정을 **percolateDown**이라고 한다. 
+
+percolateDown은 percolateUp과 유사하게, 자신의 자식 노드들 중 큰 값과 자신을 비교하며, 자식 노드가 더 클 경우 자리를 바꾸는 것이다. 이 과정은 리프 노드에 이를 때까지 계속된다.
+
+1. A[n-1]과 A[0]을 교환
+2. percolateDown()
+
+---
+
+```java
+public E deleteMax() {
+		E max = heap[0];
+		heap[0] = heap[this.numItems - 1]; // 자리 교환
+		this.numItems--; // max값은 배열에서 제외됨
+		percolateDown(this.numItems);
+		return max;
+	}
+
+	public void percolateDown(int i) {
+		int child = 2 * i + 1;
+		int rightChild = 2 * i + 2;
+		if (child <= this.numItems - 1) {
+			if (((Comparable<E>) heap[child]).compareTo(heap[rightChild]) < 0)
+				child = rightChild; // 더 큰 값을 child로 지정
+			if (((Comparable<E>) heap[i]).compareTo(heap[child]) < 0) {
+				E tmp = heap[i];
+				heap[i] = heap[child];
+				heap[child] = tmp;
+				percolateDown(child);
+			}
+
+		}
+	}
+```
+
+## 힙 생성
+
+리프노드가 아닌 노드부터 루트노드까지 힙 조건을 만족하도록 수정함(percolateDown)
+
+최초의 리프노드가 아닌 노드: 맨 마지막 노드의 부모 노드 → 마지막 index가 k라면 (k-1)/2
+
+```java
+public void buildHeap() {
+		if (this.numItems >= 2) {
+			for (int i = (numItems - 2) / 2; i >= 0; i--)
+				percolateDown(i);
+		}
+	}
+```
+
+## 힙 수행시간
+
+`buildHeap()`: [Θ](https://ko.wikipedia.org/wiki/%CE%98)(n)
+
+`insert()`: O(log n) - 한 번의 percolateUp (트리의 높이)
+
+`deleteMax()`: O(log n) - 한 번의 percolateDown
+
+---
+
+# B-트리 / B+트리
+
+[https://velog.io/@emplam27/자료구조-그림으로-알아보는-B-Tree](https://velog.io/@emplam27/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EA%B7%B8%EB%A6%BC%EC%9C%BC%EB%A1%9C-%EC%95%8C%EC%95%84%EB%B3%B4%EB%8A%94-B-Tree)
 
 # B-트리
 
@@ -1228,33 +1172,48 @@ poserOrder(r)
 
 **최대 *M*개의 자식**을 가질 수 있는 B트리=*M*차 B트리
 
-![Untitled](img/btree1.png)
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2025.png)
 
 $key_{i-1} < T_i < key_i$
 
 ## 성질
 
-1. 루트를 제외한 모든 노드는 $\frac k 2$ ~k개의 키를 갖는다. 
-    a. k: 한 블록이 수용할 수 있는 최대 키의 개수
-    b. 예외: 루트 노드는 적어도 2개 이상의 자식을 가짐
-2. 모든 리프 노드는 같은 깊이를 가진다.
-3. 노드의 자료수가 N이면, 자식 수는 N+1이어야 함
-    a. 노드의 자료수(key)가 3개라면, 그 노드의 자식 수는 4개
-        
-        $key_1, key_2, key_3$
-        
-        $node_1 < key_1$
-        
-        $key_1 < node_2 < key_2$
-        
-        $key_2 < node_3 < key_3$
-        
-        $node_4 > key_3$
-        
-4. 각 노드의 자료는 정렬된 상태여야함
-5. 입력 자료는 중복 될 수 없음
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2026.png)
 
-![81DE1DD8-84D1-4BF1-819F-18C5076644E5.jpeg](img/btree2.jpeg)
+1. 루트를 제외한 모든 노드는 $\frac k 2$ ~k개의 키를 갖는다. 
+    1. k: 한 블록이 수용할 수 있는 최대 키의 개수
+    2. 예외: 루트 노드는 적어도 2개 이상의 자식을 가짐
+2. 모든 리프 노드는 같은 깊이를 가진다.
+3. 각 key들의 왼쪽 자식들은 항상 key보다 작은 값을, 오른쪽은 큰 값을 가진다.
+4. 노드의 자료수가 **N**이면, 자식 수는 **N+1**이어야 함
+    
+    ex. 노드의 자료수(key)가 3개라면, 그 노드의 자식 수는 4개
+    
+    $key_1, key_2, key_3$
+    
+    $node_1 < key_1$
+    
+    $key_1 < node_2 < key_2$
+    
+    $key_2 < node_3 < key_3$
+    
+    $node_4 > key_3$
+    
+5. 각 노드의 자료는 **정렬**된 상태여야함
+6. 입력 자료는 **중복**될 수 없음
+
+![81DE1DD8-84D1-4BF1-819F-18C5076644E5.jpeg](Data%20Structure%200e5741057c5a4f4289107babd59da419/81DE1DD8-84D1-4BF1-819F-18C5076644E5.jpeg)
+
+### 장점
+
+- 삽입, 삭제 후에도 균형 트리 유지
+- 효율적인 알고리즘 제공 (이진 트리보다 빠름)
+- 저장 장치의 효율성
+- 균등한 탐색 속도 보장 가능
+
+### 단점
+
+- 삽입/삭제 시 복잡한 연산
 
 ## 알고리즘
 
@@ -1262,9 +1221,12 @@ $key_{i-1} < T_i < key_i$
 
 기본적으로 이진 검색 트리의 검색과 같음
 
-1. 노드의 여러 키 중 검색 키와 일치하는 것이 있는지 확인
-2. $key_{i-1}$ < x < $key_i$ 인 두 키 $key_{i-1}$ 과 $key_i$ 를 찾아 분기해야 할 자식 노드를 찾음
-3. 자식으로 분기하고 나면 깊이만 하나 내려간 똑같은 검색 문제(다시 자식 노드를 찾음) → 재귀적 과정
+1. 루트 노드부터 시작
+2. 노드의 여러 키 중 검색 키와 일치하는 것이 있는지 확인
+3. $key_{i-1}<x<key_i$인 두 키 $key_{i-1}$과 $key_i$를 찾아 분기해야 할 자식 노드를 찾음
+4. 자식으로 분기하고 나면 깊이만 하나 내려간 똑같은 검색 문제(다시 자식 노드를 찾음) → 재귀적 과정
+
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2027.png)
 
 ### 삽입
 
@@ -1272,37 +1234,37 @@ ex) 각 노드가 최대 5개의 키를 가질 수 있다고 가정
 
 루트 노드를 제외하고 2~5개의 키를 가져야 한다.
 
-1. x를 삽입할 리프 노드 r을 찾는다.
-2. 노드 r에 공간의 여유가 있으면 키를 삽입하고 끝낸다. (case 1)
+1. x를 삽입할 리프 노드 r을 찾는다. (검색)
+2. 노드 r에 공간의 여유가 있으면 키를 삽입하고 끝낸다. **(case 1)**
 3. 노드 r에 여유가 없으면 형제 노드에 공간의 여유가 있는지 살펴본다. 
-    1. 형제 노드에 공간의 여유가 있으면 키를 하나 넘기고 끝낸다. (case 2)
+    1. 형제 노드에 공간의 여유가 있으면 키를 하나 넘기고 끝낸다. **(case 2)**
         
-        ![F71E7351-1E16-471D-B785-DEDDAFFA7516.jpeg](img/btree3.jpeg))
+        ![F71E7351-1E16-471D-B785-DEDDAFFA7516.jpeg](Data%20Structure%200e5741057c5a4f4289107babd59da419/F71E7351-1E16-471D-B785-DEDDAFFA7516.jpeg)
         
-    2. 형제 노드에 여유가 없으면 노드를 2개로 분리한다. 분리 작업은 부모 노드로 키를 하나 넘기는 작업을 포함한다. (case 3)
+    2. 형제 노드에 여유가 없으면 노드를 2개로 분리한다. 분리 작업은 부모 노드로 키를 하나 넘기는 작업을 포함한다. **(case 3)**
         
-        ![61DF2746-7FA3-4F2E-B0FA-DE347E6B84A6.jpeg](img/btree4.jpeg)
+        ![61DF2746-7FA3-4F2E-B0FA-DE347E6B84A6.jpeg](Data%20Structure%200e5741057c5a4f4289107babd59da419/61DF2746-7FA3-4F2E-B0FA-DE347E6B84A6.jpeg)
         
 
 ### 삭제
 
-1. x를 키로 갖고 있는 노드를 찾는다.
+1. x를 키로 갖고 있는 노드를 찾는다. (검색)
 2. 리프노드인지 아닌지 확인
     1. 리프노드라면 바로 삭제 (case 1)
         
-        ![30404C10-87A5-413C-8556-BA00CCE9CB0E.jpeg](img/btree5.jpeg)
+        ![30404C10-87A5-413C-8556-BA00CCE9CB0E.jpeg](Data%20Structure%200e5741057c5a4f4289107babd59da419/30404C10-87A5-413C-8556-BA00CCE9CB0E.jpeg)
         
     2. 리프노드가 아니라면 x의 직후 원소 r과 x를 교환한 후, 리프 노드 x 제거 (case 2)
         
-        ![7731022E-111F-4D4F-A047-137FFD2B2626.jpeg](img/btree6.jpeg)
+        ![7731022E-111F-4D4F-A047-137FFD2B2626.jpeg](Data%20Structure%200e5741057c5a4f4289107babd59da419/7731022E-111F-4D4F-A047-137FFD2B2626.jpeg)
         
 3. x를 제거한 후 노드에 언더플로우가 발생하면 해소한다. (case 3)
 
-![8D6CA31D-7CC6-4469-AD8C-59592B26DBBE.jpeg](img/btree7.jpeg)
+![8D6CA31D-7CC6-4469-AD8C-59592B26DBBE.jpeg](Data%20Structure%200e5741057c5a4f4289107babd59da419/8D6CA31D-7CC6-4469-AD8C-59592B26DBBE.jpeg)
 
 ### 작업 성능
 
-d진 검색 트리가 균형을 잘 맞추면 높이가 $log_dn$ 에 근접
+d진 검색 트리가 균형을 잘 맞추면 높이가 $log_dn$에 근접
 
 B-트리에서 임의의 노드가 최대 d개의 자식을 가질 수 있다면, 최소한 $\frac {d-1} 2$+1개에서 $\frac d 2$개의 자식을 가져야 함
 
@@ -1316,22 +1278,21 @@ $O(log n)$ (높이)
 
 **삽입**
 
-실패하는 검색을 한 번 수행 $O(log n)$
+실패하는 검색을 한 번 수행($O(log n)$)
 
-오버플로우가 최대한 발생하더라도 높이에 비례하는 시간 $O(log n)$ 
+오버플로우가 최대한 발생하더라도 높이에 비례하는 시간($O(log n)$ 
 
 → $O(log n)$
 
 **삭제**
 
-삭제 원소 검색 + 직후 원소를 찾는 작업 $O(log n)$
+삭제 원소 검색 + 직후 원소를 찾는 작업($O(log n)$
 
-언더플로우 최대 $O(log n)$
+언더플로우 최대 ($O(log n)$) 
 
 → $O(log n)$
 
 → 두 작업 모두 이진 검색 트리에 비해 빠름
-
 
 ---
 
@@ -1368,25 +1329,25 @@ $O(log n)$ (높이)
 
 5 삽입 
 
-![Untitled](img/bplustree1.png)
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2028.png)
 
 한 노드당 최대 데이터: 3개 → 오버 플로우
 
-![Untitled](img/bplustree2.png)
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2029.png)
 
 리프 노드 분열 → 5가 새로운 키가 됨
 
-![Untitled](img/bplustree3.png)
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2030.png)
 
 cf. 리프 노드(데이터)가 아닌 키에서 분열할 때는 값 복사x 
 
-![Untitled](img/bplustree4.png)
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2031.png)
 
 9, 13, 16, 18 블록: 오버플로우
 
 그러나 data 노드가 아니기 때문에 일반 B-Tree처럼 분열
 
-![Untitled](img/bplustree5.png)
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2032.png)
 
 ---
 
@@ -1394,21 +1355,21 @@ cf. 리프 노드(데이터)가 아닌 키에서 분열할 때는 값 복사x
 
 1. 9 삭제
 
-![Untitled](img/bplustree6.png)
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2033.png)
 
 1. 9는 data인 동시에 key → 그러나 key는 다른 값을 찾는 데에 필요하기 때문에 data(리프 노드)만 삭제!
 
 9를 삭제하면 underflow → 병합
 
-![Untitled](img/bplustree7.png)
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2034.png)
 
 1. 이때 브랜치노드에 있던 9는 key 였고, (3,4,6) 블럭과 (9) 블럭이 병합되었기 때문에 더이상 키의 기능x → 삭제 
 
-![Untitled](img/bplustree8.png)
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2035.png)
 
 1. 9가 없어져서 브랜치 노드에 underflow → 병합
 
-![Untitled](img/bplustree9.png)
+![Untitled](Data%20Structure%200e5741057c5a4f4289107babd59da419/Untitled%2036.png)
 
 - 요약
 
@@ -1431,7 +1392,3 @@ cf. 리프 노드(데이터)가 아닌 키에서 분열할 때는 값 복사x
 | 검색(one) | 루트 노드에 가까울 경우 빠름 | 리프 노드까지 가야 데이터 존재 → 오래 걸릴 수 있음 |
 
 [https://zorba91.tistory.com/293](https://zorba91.tistory.com/293)
-
-
-</div>
-</details>

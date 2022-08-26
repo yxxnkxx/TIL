@@ -639,5 +639,93 @@ public class ExhaustiveSearch_babygin {
 </div>
 </details>
 
-
 ---
+
+<h1> 조합론 </h1>
+<details>
+<summary>조합론</summary>
+<div markdown="1">
+
+<details>
+<summary>이항계수</summary>
+<div markdown="1">
+
+## 이항계수
+
+[https://shoark7.github.io/programming/algorithm/3-ways-to-get-binomial-coefficients](https://shoark7.github.io/programming/algorithm/3-ways-to-get-binomial-coefficients)
+
+### 정의
+
+이항 계수는 집합에서 원하는 개수만큼 순서없이 뽑는 조합의 가짓수를 의미한다. 즉 nCr을 구하는 알고리즘이다.
+
+### 구현 1: 팩토리얼 이용
+
+$$
+nCk = \frac{n!}{{n-k}!*k!}
+$$
+
+첫 번째 정의는 팩토리얼 재귀함수를 이용하여 알고리즘으로 구현할 수 있다.
+
+```jsx
+public class MyBinoCo {
+
+	public static void main(String[] args) {
+
+		int N = 10;
+		int K = 3;
+		// 팩토리얼
+		System.out.println(fact(N) / fact(N - K) / fact(K));
+	}
+
+	static int fact(int N) {
+
+		if (N == 0 || N == 1)
+			return 1;
+		int tmp = N;
+		for (int i = 2; i < N; i++)
+			tmp *= i;
+		return tmp;
+
+	}
+}
+```
+
+### 구현 2: DP, 재귀 함수 이용
+
+그리고 n개에서 k개를 뽑는 가짓수는, n을 포함하지 않고 n-1개에서 k개를 뽑는 가짓수와 n을 포함하고 n-1개에서 k-1개를 뽑는 가짓수의 합과 같다.
+
+$$
+\binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1}
+$$
+
+두 번째는 다음 성질을 이용한다. 그런데 재귀를 활용해서 
+
+```jsx
+bino(N, K) = bino(N-1, K) + bino(N-1, K-1);
+```
+
+라고 구하면 가짓수가 많아져 메모리 낭비가 심하기 때문에 memoization을 이용한다.
+
+```jsx
+static int bino(int N, int K) {
+		if (memo[N][K] > 0)
+			return memo[N][K]; // memo가 되어있으면 바로 return
+		if (N < K)
+			return 0; // N보다 K(뽑는 수)가 더 크면 0
+		if (K == 0 || N == K)
+			return 1; // 정의 상 K가 0일 때 (안 뽑을 때), K가 N일 때(모든 가짓수를 다 뽑기)는 1
+		memo[N][K] = bino(N - 1, K) + bino(N - 1, K - 1); // 성질 이용
+		return memo[N][K];
+
+	}
+```
+
+
+
+
+
+</div>
+</details>
+
+</div>
+</details>

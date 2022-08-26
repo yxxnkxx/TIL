@@ -775,3 +775,295 @@ public class MyBinoCo {
 
 </div>
 </details>
+
+---
+
+<h1> 기본 수학 </h1>
+<details>
+<summary>기본 수학</summary>
+<div markdown="1">
+
+<details>
+<summary>순열/조합</summary>
+<div markdown="1">
+
+
+## 순열/조합
+
+순열, 조합, 중복 순열, 중복 조합을 dfs를 이용하여 구할 수 있다.
+
+백준의 N과 M시리즈가 순열/조합을 공부하기 좋은 문제들이다.
+
+[https://www.acmicpc.net/workbook/view/2052](https://www.acmicpc.net/workbook/view/2052)
+
+### 1. 순열
+
+순열은 N개의 수에서 R개의 수를 뽑아 순서대로 나열하는 것이다.
+
+{1, 2, 3, 4} 4개의 수에서 2개의 수를 뽑아 나열하는 경우의 수는
+
+{1, 2} {1, 3} {1, 4} {2, 1} {2, 3} {2, 4} {3, 1} {3, 2} {3, 4} {4, 1} {4, 2} {4, 3} 의 12가지다.
+
+$$
+nPr = n*(n-1) * ... (n-r+1)
+$$
+
+순열을 구하기 위해서는 dfs를 활용한다.
+
+```java
+static void dfs(int N, int M, int cnt) {
+
+		if (cnt == M) { // 배열의 개수가 M이 되면 출력하고 return
+			for (int i = 0; i < M; i++) {
+				sb.append(result[i] + " ");
+			}
+			sb.append("\n");
+			return;
+		}
+		for (int i = 1; i <= N; i++) {
+			if (!check[i]) { // 방문하지 않은 노드
+				check[i] = true; // 방문 체크
+				result[cnt] = i; // result값에 대입
+				dfs(N, M, cnt + 1); // 다시 재귀적으로 dfs (cnt 1 증가)
+				check[i] = false; // i를 false로
+			}
+
+		}
+
+	}
+```
+
+- 종료 조건
+
+cnt 즉, dfs의 깊이가 M이 되면 M개의 수를 찾은 것이다. 그때 결과 배열에 있는 값들이 순열의 한 경우의 수가 된다.
+
+- 재귀 조건
+
+1부터 N까지의 수 중에서 방문하지 않은 노드를 만나면, boolean 배열에 check 표시를 하고, 결과값의 cnt(깊이)에 i를 대입한다.
+
+다시 깊이를 1 증가시켜 dfs를 진행한다.
+
+그리고 check[i]를 false로 만들어야 한다. 해당 dfs 함수가 종료된 후에는 같은 수가 다시 순열에 추가될 수 있기 때문이다.
+
+(1,2)와 (2,1)이 다른 경우의 수라는 것을 이해하면 쉬울 것이다.
+
+- 전체 코드
+
+```java
+package Silver.s3;
+
+import java.util.Scanner;
+
+public class BOJ_15649_NandM {
+	static boolean[] check;
+	static int[] result;
+
+	static StringBuilder sb = new StringBuilder();
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		int M = sc.nextInt();
+		check = new boolean[N + 1];
+		result = new int[M + 1];
+		dfs(N, M, 0);
+		System.out.print(sb);
+
+	}
+
+	static void dfs(int N, int M, int cnt) {
+
+		if (cnt == M) { // 배열의 개수가 M이 되면 출력하고 return
+			for (int i = 0; i < M; i++) {
+				sb.append(result[i] + " ");
+			}
+			sb.append("\n");
+			return;
+		}
+		for (int i = 1; i <= N; i++) {
+			if (!check[i]) { // 방문하지 않은 노드
+				check[i] = true; // 방문 체크
+				result[cnt] = i; // result값에 대입
+				dfs(N, M, cnt + 1); // 다시 재귀적으로 dfs (cnt 1 증가)
+				check[i] = false; // i를 false로
+			}
+
+		}
+
+	}
+
+}
+```
+
+### 2. 조합
+
+조합은 N개의 수에서 R개의 수를 뽑는 것인데, 순서를 고려하지 않는 것이다.
+
+즉 순열과 달리 (1,2)와 (2,1)은 같은 경우의 수가 된다.
+
+$$
+nCr = \frac{n!}{n-r!*r!} 
+$$
+
+{1, 2, 3, 4}에서 2개를 뽑는 조합은
+
+{1, 2} {1, 3} {1, 4} {2, 3} {2, 4} {3, 4} 6개가 된다.
+
+[N과M2](https://www.acmicpc.net/problem/15650) 가 조합을 구하는 문제인데, 문제 조건에 수열을 오름차순으로 출력한다고 되어 있다.
+
+순열에서는 1,2 와 2,1이 모두 출력 가능했지만 조합에서는 1,2만 출력 가능하다.
+
+```java
+	static void dfs(int N, int M, int cnt, int k) {
+
+		if (cnt == M) { // 배열의 개수가 M이 되면 출력하고 return
+			for (int i = 0; i < M; i++) {
+				sb.append(result[i] + " ");
+			}
+			sb.append("\n");
+			return;
+		}
+		for (int i = k; i <= N; i++) {
+			if (!check[i]) { // 방문하지 않은 노드
+				check[i] = true; // 방문 체크
+				result[cnt] = i; // result값에 대입
+				dfs(N, M, cnt + 1, i + 1); // 다시 재귀적으로 dfs (cnt 1 증가)
+				check[i] = false;
+			}
+
+		}
+
+```
+
+조합의 코드에서 달라진 것은 k 매개변수가 추가되었다는 점이다.
+
+깊이가 증가할수록 자신보다 큰 수만 수열에 담을 수 있기 때문에 k는 for문을 탐색하는 시작 값이 된다. 깊이가 1 증가하면 k는 자기 자신+1이 된다.
+
+- 전체 코드
+
+```java
+package Silver.s2;
+
+import java.util.Scanner;
+
+public class BOJ_15650_NandM2 {
+	static boolean[] check;
+	static int[] result;
+
+	static StringBuilder sb = new StringBuilder();
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		int M = sc.nextInt();
+		check = new boolean[N + 1];
+		result = new int[M + 1];
+
+		dfs(N, M, 0, 1);
+
+		System.out.print(sb);
+
+	}
+
+	static void dfs(int N, int M, int cnt, int k) {
+
+		if (cnt == M) { // 배열의 개수가 M이 되면 출력하고 return
+			for (int i = 0; i < M; i++) {
+				sb.append(result[i] + " ");
+			}
+			sb.append("\n");
+			return;
+		}
+		for (int i = k; i <= N; i++) {
+			if (!check[i]) { // 방문하지 않은 노드
+				check[i] = true; // 방문 체크
+				result[cnt] = i; // result값에 대입
+				dfs(N, M, cnt + 1, i + 1); // 다시 재귀적으로 dfs (cnt 1 증가)
+				check[i] = false;
+			}
+
+		}
+
+	}
+
+}
+```
+
+### 3. 중복 순열
+
+중복 순열은 N개의 수에서 중복을 허용하여 R개의 수를 뽑아 **순서대로** 나열하는 것이다.
+
+$$
+_n\pi _r = n^r
+$$
+
+{1, 2, 3, 4}에서 2개를 뽑는 중복 순열은
+
+{1,1} {1, 2} {1, 3} {1, 4} {2, 1} {2, 2} {2, 3} {2, 4} {3, 1} {3, 2} {3, 3} {3, 4} {4, 1} {4, 2} {4, 3} {4, 4} 의 16가지다.
+
+중복 순열을 코드로 구현할 때에는 방문 여부를 조사할 필요가 없다. 중복을 허용하기 때문이다.
+
+순열을 구하는 코드에서 방문 여부를 제외하면 중복 순열을 구하는 코드와 같다.
+
+```java
+static void perm(int N, int[] out, int depth, int r) {
+
+		if (depth == r) {
+
+			for (int i = 0; i < out.length; i++) {
+				sb.append(out[i] + " ");
+			}
+			sb.append("\n");
+			return;
+		}
+
+		for (int i = 1; i <= N; i++) {
+			out[depth] = i;
+			perm(N, out, depth + 1, r);
+
+		}
+	}
+```
+
+코드의 for문 내부를 보면 방문 여부를 조사하지 않고 out 배열에 i를 그대로 담는 것을 확인할 수 있다.
+
+### 4. 중복 조합
+
+**중복 가능한 n개중에서 r개를 선택하는 경우의 수**를 의미한다.
+
+조합 중에서 중복을 허용하는 경우라고 생각하면 된다.
+
+$$
+_nH_r = _{n+1-c}C_r
+$$
+
+{1, 2, 3, 4}에서 2개를 뽑는 중복 조합의 경우의 수는
+
+{1, 1} {1, 2} {1, 3} {1, 4} {2, 2} {2, 3} {2, 4} {3, 3} {3, 4} {4, 4}
+
+조합의 코드와 달라진 점은 조합에서는 start에 i+1을 넣었다면, 중복 조합은 i와 같은 경우도 허용하기 때문에 i+1이 아닌 i를 매개변수로 활용한다는 점이다.
+
+```java
+static void comb(int N, int[] out, int start, int depth, int M) {
+		if (depth == M) {
+			for (int i = 0; i < out.length; i++) {
+				sb.append(out[i] + " ");
+			}
+			sb.append("\n");
+			return;
+		}
+
+		for (int i = start; i <= N; i++) {
+			out[depth] = i;
+			comb(N, out, i, depth + 1, M);
+		}
+	}
+```
+
+
+
+</div>
+</details>
+
+</div>
+</details>

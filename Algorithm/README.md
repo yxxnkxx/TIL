@@ -666,7 +666,7 @@ $$
 
 첫 번째 정의는 팩토리얼 재귀함수를 이용하여 알고리즘으로 구현할 수 있다.
 
-```jsx
+```java
 public class MyBinoCo {
 
 	public static void main(String[] args) {
@@ -700,13 +700,13 @@ $$
 
 두 번째는 다음 성질을 이용한다. 그런데 재귀를 활용해서 
 
-```jsx
+```java
 bino(N, K) = bino(N-1, K) + bino(N-1, K-1);
 ```
 
 라고 구하면 가짓수가 많아져 메모리 낭비가 심하기 때문에 memoization을 이용한다.
 
-```jsx
+```java
 static int bino(int N, int K) {
 		if (memo[N][K] > 0)
 			return memo[N][K]; // memo가 되어있으면 바로 return
@@ -720,6 +720,52 @@ static int bino(int N, int K) {
 	}
 ```
 
+### 전체 코드
+```java
+package combinatorics;
+
+public class MyBinoCo {
+
+	static int[][] memo;
+
+	public static void main(String[] args) {
+
+		int N = 10;
+		int K = 3;
+		// 팩토리얼
+		System.out.println(fact(N) / fact(N - K) / fact(K));
+
+		// dp
+		memo = new int[N + 1][K + 1];
+		System.out.println(bino(N, K));
+
+	}
+
+	static int fact(int N) {
+
+		if (N == 0 || N == 1)
+			return 1;
+		int tmp = N;
+		for (int i = 2; i < N; i++)
+			tmp *= i;
+		return tmp;
+
+	}
+
+	static int bino(int N, int K) {
+		if (memo[N][K] > 0)
+			return memo[N][K]; // memo가 되어있으면 바로 return
+		if (N < K)
+			return 0; // N보다 K(뽑는 수)가 더 크면 0
+		if (K == 0 || N == K)
+			return 1; // 정의 상 K가 0일 때 (안 뽑을 때), K가 N일 때(모든 가짓수를 다 뽑기)는 1
+		memo[N][K] = bino(N - 1, K) + bino(N - 1, K - 1); // 성질 이용
+		return memo[N][K];
+
+	}
+
+}
+```
 
 
 

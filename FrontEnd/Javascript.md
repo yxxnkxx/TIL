@@ -322,7 +322,6 @@ do {
 
 }while(j < 10)
 
-// 반복문에 label을 붙이면 한방에 빠져나올수 있음
 
 // for in
 // 객체의 속성들을 순회할 때 사용
@@ -458,16 +457,14 @@ console.log(student["favorite singer"]); // .으로 접근x
 ```jsx
 // 프로퍼티 생성
 var member = {};
-member["id"] = "hong";
+member["id"] = "lee";
 member.name = "이름";
 
-var member = {"id": "hong", "email": "hong@a.com"};
 // 동적인 프로퍼티 추가
-member.name = "홍길동";
+member.email = "lee@email.com";
 console.log(member);
 
 // 프로퍼티 수정
-let member = {id: "id", email: "id@a.com"}
 member["id"] = "id2";  
 member.email = "id2@a.com";  
 
@@ -476,17 +473,6 @@ let member = { id: "id", email: "id@a.com" };
 delete member.id;
 console.log(member);
 
-```
-
-객체 변수에는 주소가 저장되어 공유 가능
-
-```jsx
-let member1 = {id: "hong", email: "hong@a.com"}
-let member2 = member1;
-member2.id = "kang";
-
-console.log(member1.id);  // kang
-console.log(member2.id);  // kang
 ```
 
 함수 안에서의 this는 함수를 호출한 객체
@@ -498,7 +484,7 @@ var m1 = {name: "이름1"};
 var m2 = {name: "이름2"};
 function msg () {
     console.log(this);
-    console.log(this.name + "님이 입장함...");
+    console.log(this.name + "입니다.");
 }
 m1.msg = msg; //msg라는 key를 가진 function을 정의함 this.name:이름1
 m2.msg = msg; // this.name = 이름2
@@ -518,13 +504,6 @@ JavaScript Object Notation
 
 웹 브라우저 비동기 처리에 사용되는 AJAX의 데이터 교환 형식으로 널리 알려짐
 
-### 필요성
-
-- 프로트엔드 프레임워크에 의해 지원
-- 공식 포맷 - 개발자 사이 데이터 통신 가능
-- 텍스트로 이루어져 있어 읽고 쓰기 쉬움
-- XML에 비해 용량이 적고 이해하기 쉬움
-- 언어와 플랫폼에 독립적이므로, 서로 다른 시스템 간에 데이터 교환에 좋음
 
 ### Key, Value의 쌍으로 표현
 
@@ -601,7 +580,7 @@ func = ~~;
 ### 선언식 vs 표현식
 
 - 선언식: 호이스팅의 영향을 받아 함수 선언 이전에 호출 가능
-- 표현식 함수는 선언 이전에 호출이 불가능
+- 표현식: 함수는 선언 이전에 호출이 불가능
 
 ## 함수의 리턴
 
@@ -654,7 +633,6 @@ arguments라는 함수 내부의 프로퍼티를 이용하여 매개변수의 �
 기본 인자(default arguments)를 사용할 수 있음
 
 ```jsx
-// 개수 안중요함.
 function fn1(num) {
   console.log("fn1", num);
 }

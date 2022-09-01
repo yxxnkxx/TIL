@@ -1155,9 +1155,10 @@ Web API로 들어오는 순서x, 어떤 이벤트가 먼저 처리되느냐가 �
 </details>
 
 <h1>CallBack 함수와 Promise</h1>
-[https://bigtop.tistory.com/35](https://bigtop.tistory.com/35)
 
-[https://joshua1988.github.io/web-development/javascript/javascript-asynchronous-operation/](https://joshua1988.github.io/web-development/javascript/javascript-asynchronous-operation/)
+[https://bigtop.tistory.com/35]
+
+[https://joshua1988.github.io/web-development/javascript/javascript-asynchronous-operation/]
 
 <details>
 <summary>비동기 처리</summary> 

@@ -1151,41 +1151,164 @@ Web API로 들어오는 순서x, 어떤 이벤트가 먼저 처리되느냐가 �
     }
 ```
 
+</div>
+</details>
+
+<h1>CallBack 함수와 Promise</h1>
+[https://bigtop.tistory.com/35](https://bigtop.tistory.com/35)
+
+[https://joshua1988.github.io/web-development/javascript/javascript-asynchronous-operation/](https://joshua1988.github.io/web-development/javascript/javascript-asynchronous-operation/)
+
+<details>
+<summary>비동기 처리</summary> 
+<div markdown="1">
+
+## 비동기 처리
+
+특정 코드의 연산이 끝날 때까지 코드의 실행을 멈추지 않고 다음 코드를 먼저 실행
+
+```jsx
+function asyncTest(duration) {
+  setTimeout(() => {
+    // 이 작업을
+    console.log(duration)
+  }, duration); // duration 경과하면 수행
+}
+
+asyncTest(2000);
+asyncTest(1000);
+
+//1000
+//2000
+```
+
+setTimeout 함수는 duration이 경과하면 작업을 수행하는 함수이다.
+
+asyncTest의 2000이 먼저 수행되었지만, 비동기적인 자바 스크립트에서는 함수 두개가 동시에 실행되기 때문에 1000이 먼저 완료되어 console에 1000, 2000 순서로 출력된다.
+
+
+</div>
+</details>
+
+<details>
+<summary>Callback 함수</summary> 
+<div markdown="1">
+
+## Callback 함수
+
+콜백 함수 = 다른 함수에 매개변수로 넘겨준 함수
+
+매개변수로 넘겨받은 함수는 나중에 호출(call back)한다.
+
+비동기 처리 방식의 문제를 해결할 수 있음
+
+매개변수로 넘겨받은 함수를 특정 작업이 완료된 후에 실행할 수 있다.
+
+- 예시
+
+callBackTest의 매개변수 `callBack`과 `errorCallBack`을 함수로 정의함
+
+`check`가 `true`일 경우 `callBack` 함수 호출, `false`일 경우 `errorCallBack` 함수 호출
+
+```jsx
+function callBackTest(check, callBack, errorCallBack) {
+  if (check===true) {
+    callBack("true");
+  } else {
+    errorCallBack("error")
+  }
+}
+
+callBackTest(false, 
+  //callBack
+  (msg) => {
+    console.log(`callback: ${msg}`);
+  }, (error) => {
+    console.log(`error: ${error}`);
+  })
+```
+
+</div>
+</details>
+
+
+<details>
+<summary>Promise</summary> 
+<div markdown="1">
+
+
 ## Promise
 
-### Promise Object
 
-비동기 작업을 마치 동기 작업처럼 값을 반환해서 사용 형태
+자바스크립트 비동기 처리에 사용되는 객체
+
+비동기 작업을 마치 **동기 작업**처럼 값을 반환해서 사용하는 형태
 
 미래의 완료 또는 실패와 그 결과 값을 나타냄
 
-미래의 어떤 상황에 대한 약속
+```jsx
+new Promise((resolve, reject)=>{
+  if (조건) {
+		resolve();
+	} else if (조건) {
+		reject();
+	}
+});
+```
 
-`new Promise(functi (reslolve, reject) {} )`
+Promise 객체를 만들어서 사용할 수 있다.
 
-resolve : 성공, reject: 실패
+## Method
 
-### Method
+어떤 작업이 성공할 경우 `resolve()`를, 실패할 경우 `reject()`를 실행하도록 만든다.
 
-- .then (callback)
+```jsx
+Promise
+	.then((msg) => {
+})
+	.catch((error) => {
+})
+  .finally(() => {
+})
+```
 
-Promise 객체를 리턴, 두 개의 콜백 함수를 인수로 받는다. (이행, 거부)
+`then`은 resolve가 실행되었을 때, 즉 이행 상태일 때 실행되는 함수이다.
 
-이전 작업의 성공 결과를 인자로 전달 받음
+`catch`는 reject가 실행되었을 때, 즉 실패 상태일 때 실행되는 함수이다.
 
-- .catch (callback)
+`finally`는 결과와 상관없이 무조건 실행되는 함수이다.
 
-.then이 하나라도 실패하면(거부) 동작 (예외 처리 구문 유사)
+### 콜백 함수를 Promise로 바꾸기
 
-이전 작업의 실패로 인해 생성된 error 객체는 catch 블록 안에서 사용 가능
+```jsx
+function PromiseTest(check) {
+  return new Promise((resolve, reject)=>{
+    if (check===true) {
+      resolve("true");
+    } else {
+      reject("false");
+    }
+  })
+}
 
-- .finally (callback)
+PromiseTest(true)
+.then((msg) => {
+  console.log(`resolved: ${msg}`)
+})
+.catch((msg)=> {
+  console.log(`rejected: ${msg}`)
+})
 
-Promise 객체 반환
+// then 실행
+// resolved: true
+```
 
-결과 상관없이 무조건 실행
+위 함수는 Promise 객체를 반환하는 함수이다.
 
-- 체이닝 가능
+`check`가 `true`일 경우 fulfill(resolve), 아닌 경우에는 reject 한다.
+
+fulfill일 경우 `then()`에서 resolved와 msg를 출력하고, reject일 경우 `catch()`에서 rejected와 msg를 출력한다.
+
 
 ## axios
 
@@ -1203,3 +1326,6 @@ Vue에서 권고
 - 요청 취소
 - JSON 데이터 자동 변환
 - XSRF를 막기 위한 클라이언트 사이드 지원
+
+</div>
+</details>

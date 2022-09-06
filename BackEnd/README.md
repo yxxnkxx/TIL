@@ -363,3 +363,120 @@ request.getRequestDispatcher("/WEB-INF/list.jsp").forward(request, response)
 
 </div>
 </details>
+
+
+# Cookie & Session
+
+<details>
+<summary>Cookie</summary>
+<div markdown="1">
+
+
+### HTTP 프로토콜 특징
+
+- 비연결 지향형 통신 프로토콜
+
+응답 후 연결을 종료**(stateless)**
+
+지속적인 연결 유지로 인한 자원낭비 방지를 위해 연결 해제
+
+연결이 해제되면 서버는 클라이언트 정보를 알 수 없음
+
+이 문제를 해결하기 위해 Cookie와 HttpSession을 활용함
+
+# 쿠키
+
+`javax.servlet.http.Cookie`
+
+서버가 생성하는 클라이언트 정보를 가지고 있는 파일
+
+**클라이언트 컴퓨터에 저장**, 필요에 따라 요청 시 서버로 같이 전송됨
+
+**key-value** 형태로 구성되며 문자열 데이터
+
+**브라우저**(클라이언트) 별로 별도의 쿠키가 생성 (브라우저가 다르면 다른 사용자로 처리)
+
+세션관리(사용자 아이디, 접속시간, 장바구니)을 위해 사용됨
+
+사용자마다 다른 페이지를 보여줄 수 있다
+
+사용자의 행동과 패턴을 분석하고 기록하는 데 사용됨 (사용자가 클릭한 상품 관련 광고 배너)
+
+## 쿠키 동작 순서
+
+1. Client가 요청 생성
+2. WAS는 쿠키를 생성하고 Http Header에 쿠키를 넣어 응답 (response)
+3. 클라이언트(브라우저)는 쿠키를 저장, 해당 서버에 요청할 때 요청과 함께 쿠키를 전송
+4. 쿠키는 브라우저가 종료되더라도 계속 저장되기 때문에 (만료 기간 전까지) 동일 사이트 재 방문하여 요청 시 필요에 따라 쿠키가 재전송됨
+- 서버와 클라이언트는 연결이 안 되어있는데, 연결된 것처럼 보이는 것은 쿠키/세션 때문!
+
+## 쿠키 특징
+
+- 이름(key), 값(value), 만료일(Expire date, 저장기간), 경로 정보로 구성됨
+- 클라이언트에 최대 300개의 쿠키를 저장하고 있음
+- 하나의 도메인 당 20개의 쿠키를 저장할 수 있음
+- 쿠키 하나는 4KB(4096byte)까지 저장 가능
+
+## 쿠키 생성 및 추가
+
+쿠키 생성: `javax.servlet.http.Cookie(java.lang.String name, java.lang.String value)`
+
+`Cookie cookie = new Cookie("userid", "ssafy");`
+
+쿠키 응답에 추가: `response.addCooie(cookie);`
+
+---
+
+</div>
+</details>
+
+
+
+<details>
+<summary>Session</summary>
+<div markdown="1">
+
+# Session
+
+인터페이스 `javax.servlet.http.HttpSession`
+
+사용자가 웹 서버에 접속해 있는 상태를 하나의 단위로 보고, 이를 세션이라고 함
+
+각 세션은 sessionid를 이용해 구분
+
+WAS의 메모리에 객체 형태로 저장
+
+메모리가 허용하는 용량까지 제한없이 저장 가능
+
+세션은 서버에 저장되기 때문에 쿠키에 비해 보안이 좋음
+
+## 동작 순서
+
+1. 클라이언트가 페이지를 요청
+2. 서버는 쿠키에 session id가 있는지 확인
+3. session id가 존재하지 않으면 session id를 생성해 쿠키에 쓴 다음 클라이언트로 반환
+4. 생성된 session id를 이용하여 서버 내 메모리를 생성
+5. 클라이언트가 다음 요청 시 쿠키에 session id(JSESSIONID)를 포함해 전달하면 서버 내에 저장된 session id와 비교하여 데이터를 조회
+
+### session 설정
+
+브라우저 당 하나의 JSESSIONID를 할당 받음
+
+로그인했을 경우 자주 사용되는 정보(ex. 아이디)를 session에 저장하면 db에 접근할 필요가 없으므로 효율적
+
+### session 사용하기
+
+요청 객체로부터 session 객체를 얻어옴
+
+session에 데이터를 설정하여 저장
+
+`HttpSession session = request.getSession();`
+
+`session.setAttribute("userId", "ssafy");`
+
+session에서 값을 반환하는 getAttribute 메서드는 반환형이 Object
+
+`String userid = (String) session.getAttribute(”userid”);`
+
+</div>
+</details>

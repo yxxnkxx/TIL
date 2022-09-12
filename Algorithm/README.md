@@ -1067,3 +1067,212 @@ static void comb(int N, int[] out, int start, int depth, int M) {
 
 </div>
 </details>
+
+<h1> BFS & DFS </h1>
+<details>
+<summary>BFS & DFS</summary>
+<div markdown="1">
+
+# BFS & DFS
+
+그래프에서 모든 정점을 방문하는 방법
+
+
+
+### [참고] 그래프의 인접 노드 구현
+
+<details>
+<summary>그래프의 인접 노드 구현</summary>
+<div markdown="1">
+
+1. 인접 행렬
+    
+    n * n 행렬에 (i, j) (j, i)를 1 (또는 가중치)로 할당함
+    
+    - 장점
+    
+    이해하기 쉬움
+    
+    간선의 존재 여부를 빠르게 알 수 있음
+    
+    - 단점
+    
+    n^2에 해당하는 공간이 필요
+    
+    모든 원소를 채우는 데에도 시간이 오래 걸림
+    
+2. 인접 리스트
+    
+    보통 연결 리스트를 사용, 각 정점마다 인접한 정점들을 연결 리스트에 표현
+    
+    - 장점
+    
+    행렬에 비해 공간 낭비가 없다. (간선의 총 수에 비례하는 양만큼만 공간이 필요)
+    
+    - 단점
+    
+    만약 거의 모든 정점에 대해 간선이 존재한다면 (dense) 연결 리스트의 정보를 표현하기 위한 오버헤드가 많이 든다.
+    
+    간선이 존재하는지 알아볼 때 리스트에서 차례로 훑어야 하기 때문에 인접 행렬보다 시간이 오래 걸릴 수 있음
+    
+    → 간선의 밀도가 높으면 행렬, 간선의 밀도가 낮으면 리스트가 유리함!
+    
+3. 인접 배열
+    
+    앞 두 방식의 장점을 활용
+    
+    - 장점
+    
+    연결 리스트의 링크 정보를 위한 공간 절약
+    
+    index로 인접 여부를 체크하기 편하다
+    
+</div>
+</details>
+
+<details>
+<summary>BFS </summary>
+<div markdown="1">
+
+
+
+## 너비 우선 탐색: BFS
+
+![Untitled](./img/bfs1.png)
+
+### 과정
+
+1. 루트의 자식을 차례로 방문
+2. 루트 자식의 자식을 차례로 방문
+3. 리프 노드까지 반복
+
+![Untitled](./img/bfs2.png)
+
+![Untitled](./img/bfs3.png)
+
+![Untitled](./img/bfs4.png)
+
+![Untitled](./img/bfs5.png)
+
+
+
+### 코드 구현
+
+큐 활용
+
+1. 시작 정점을 제외한 모든 정점의 visited를 false로
+2. 큐의 맨 앞에 있는  정점을 빼내고, 이에 인접한 정점 중 방문하지 않은 정점을 모두 visited = true로 표시하고 큐에 넣는다.
+3. 큐가 empty일 때까지 2를 반복
+
+```java
+package graph;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class Bfs {
+
+	static boolean[] visited;
+	static int[][] list;
+
+	public static void main(String[] args) {
+		// 구현
+	}
+
+	static void bfs(int v) {
+		Queue<Integer> q = new LinkedList<>();
+		q.offer(v);
+		visited[v] = true;
+
+		while (!q.isEmpty()) {
+			int temp = q.poll();
+			System.out.println(temp);
+			for (int i = 0; i < list[temp].length; i++) {
+				int link = list[temp][i];
+				if (!visited[link]) {
+					visited[link] = true;
+					q.offer(link);
+				}
+			}
+		}
+	}
+}
+```
+
+### 수행 시간
+
+Θ(V+E)
+
+</div>
+</details>
+
+<details>
+<summary>DFS </summary>
+<div markdown="1">
+
+
+
+## 깊이 우선 탐색: DFS
+
+![Untitled](./img/dfs1.png)
+
+### 과정
+
+1. 루트의 자식 정점을 하나 방문, 그 자식의 자식을 방문 … 더 이상 내려갈 수 없을 때까지 방문함
+2. 위로 되돌아오다가 내려갈 곳이 있다면 (다른 자식 노드가 있으면) 다시 내려가서 반복
+
+![Untitled](./img/dfs2.png)
+
+![Untitled](./img/dfs3.png)
+
+![Untitled](./img/dfs4)
+
+BFS와 달리 DFS는 한 노드에서 인접하고 방문하지 않은 노드가 있으면 계속해서 방문한다. 5까지 갔을 때, 5는 인접한 노드 중 방문하지 않은 노드가 없다.
+
+![Untitled](./img/dfs5.png)
+
+그러면 5에서 4로, 4에서 3으로 방문할 노드가 있을 때까지 백트래킹한다. 2는 방문하지 않은 인접한 노드가 있으므로 이를 6으로 칠하고 앞의 과정을 반복한다.
+
+다시 7까지 칠하고, 6으로 돌아와 8을 방문하면 모든 노드를 방문한다.
+
+### 코드 구현
+
+1. 정점이 호출되면 정점 v를 방문하였다(visited=true)로 표시
+2. 인접하지 않은 정점 중 방문하지 않은 정점에 대해 DFS 호출
+
+```java
+package graph;
+
+public class DFS {
+	static boolean[] visited;
+	static int[][] list;
+
+	public static void main(String[] args) {
+		// 구현
+	}
+
+	static void dfs(int v) {
+
+		visited[v] = true;
+		System.out.println(v);
+		for (int i = 0; i < list[v].length; i++) {
+			int link = list[v][i];
+			if (!visited[link]) {
+				visited[link] = true;
+				dfs(link);
+			}
+		}
+
+	}
+}
+```
+
+### 수행 시간
+
+Θ(V+E)
+
+</div>
+</details>
+
+</div>
+</details>

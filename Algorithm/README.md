@@ -1225,7 +1225,7 @@ public class Bfs {
 
 ![Untitled](./img/dfs3.png)
 
-![Untitled](./img/dfs4)
+![Untitled](./img/dfs4.png)
 
 BFS와 달리 DFS는 한 노드에서 인접하고 방문하지 않은 노드가 있으면 계속해서 방문한다. 5까지 갔을 때, 5는 인접한 노드 중 방문하지 않은 노드가 없다.
 

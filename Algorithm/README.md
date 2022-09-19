@@ -779,9 +779,6 @@ public class MyBinoCo {
 ---
 
 <h1> 기본 수학 </h1>
-<details>
-<summary>기본 수학</summary>
-<div markdown="1">
 
 <details>
 <summary>순열/조합</summary>
@@ -1064,6 +1061,142 @@ static void comb(int N, int[] out, int start, int depth, int M) {
 
 </div>
 </details>
+
+
+<details>
+<summary>비트 연산자 & 부분집합</summary>
+<div markdown="1">
+
+
+# 비트 연산자
+
+`&`둘 다 1 이면 1 / 해당 비트가 있는지 검사!
+
+```java
+System.out.println(3 & 5);
+// 3 = 011
+// 5 = 101
+// --------
+//     001 -> 1
+```
+
+`|` 하나라도 1이면 1
+
+```java
+System.out.println(3 | 5);
+// 3 = 011
+// 5 = 101
+// --------
+//     111 -> 7
+```
+
+`^` XOR - 서로 다르면 1
+
+```java
+System.out.println(3 ^ 5);
+// 3 = 011
+// 5 = 101
+// --------
+//     110 -> 6
+```
+
+`A << B` A라는 비트를 B번 왼쪽 이동, A * (2^B)
+
+```java
+System.out.println(1<<3);
+// 1*(2^3) = 8
+```
+
+`A >> B` A라는 비트를 B번 오른쪽 이동, A / (2^B), 기존에 있던 1은 날아감
+
+```java
+System.out.println(5>>1);
+// 5 / (2^1) = 2
+// 101 -> 010 = 2
+```
+
+## 부분집합
+
+N개의 원소를 가진 집합에서 전체 부분집합의 개수 = 2^N
+
+### 1. 재귀
+
+부분집합은 공집합부터 원소가 1개, 2개, … N개인 원소까지의 집합을 의미함
+
+즉, N개의 원소를 포함하거나/포함하지 않거나의 두 가지 경우가 N번 반복되는 것
+
+이를 boolean 배열을 활용하면 재귀로 부분집합을 구할 수 있다.
+
+![Untitled](./img/powerset1.jpg)
+
+```java
+public class MathPowerSet_재귀 {
+	static int[] nums = { 1, 3, 4, 6 };
+	static int N = 4;
+	static boolean[] visited = new boolean[N];
+
+	public static void main(String[] args) {
+		powerset(0);
+	}
+
+	static void powerset(int idx) {
+		if (idx == N) {
+			for (int i = 0; i < N; i++)
+				if (visited[i])
+					System.out.print(nums[i] + " ");
+			System.out.println();
+			return;
+		}
+
+		visited[idx] = true; // idx번째의 원소를 포함
+		powerset(idx + 1);
+		visited[idx] = false; // idx번째의 원소를 포함하지 않음
+		powerset(idx + 1);
+	}
+}
+```
+
+### 2. 비트 연산자
+
+비트 연산자에서 `<<`를 사용하면 전체 부분집합의 개수를 구할 수 있다
+
+원소가 N개인 집합의 전체 부분집합의 개수는 `1<<N`이다.
+
+그리고 각 부분집합에 어떤 원소가 포함되었는지를 확인하기 위해서 `&`연산자를 활용한다.
+
+N이 4고, 해당 부분집합의 수가 5라면 이를 이진수로 나타내면 `0101`이 된다.
+
+`0101` 은 index가 0, 2인 원소가 포함되었다는 것이다.
+
+이를 활용해 반복문으로 전체 부분집합의 경우의 수를 구한다.public class MathPowerSet_비트연산자 {
+	static int[] nums = { 1, 3, 4, 6 };
+	static int N = 4;
+
+	public static void main(String[] args) {
+		for (int i = 0; i < (1 << 4); i++) {
+			for (int j = 0; j < N; j++)
+				if ((i & (1 << j)) > 0)
+					System.out.print(nums[j] + " ");
+			System.out.println();
+		}
+	}
+}
+
+```java
+public class MathPowerSet_비트연산자 {
+	static int[] nums = { 1, 3, 4, 6 };
+	static int N = 4;
+
+	public static void main(String[] args) {
+		for (int i = 0; i < (1 << 4); i++) {
+			for (int j = 0; j < N; j++)
+				if ((i & (1 << j)) > 0)
+					System.out.print(nums[j] + " ");
+			System.out.println();
+		}
+	}
+}
+```
 
 </div>
 </details>

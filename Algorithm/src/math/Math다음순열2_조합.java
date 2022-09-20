@@ -2,12 +2,12 @@ package math;
 
 import java.util.Arrays;
 
-public class Math다음순열 {
+public class Math다음순열2_조합 {
 	static int[] arr;
 
 	public static void main(String[] args) {
-		arr = new int[] { 1, 2, 3, 4 };
-		// 중복도 가능
+		arr = new int[] { 0, 0, 1, 1 };
+		// 4개에서 2개 선택
 
 		do {
 			System.out.println(Arrays.toString(arr));

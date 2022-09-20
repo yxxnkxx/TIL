@@ -773,6 +773,7 @@ public class MyBinoCo {
 </div>
 </details>
 
+
 </div>
 </details>
 
@@ -1061,6 +1062,70 @@ static void comb(int N, int[] out, int start, int depth, int M) {
 
 </div>
 </details>
+
+
+<details>
+<summary>다음 순열</summary>
+<div markdown="1">
+
+## 다음 순열
+
+바로 큰 다음 순열을 구하기
+
+1 2 3 4
+
+1 2 4 3
+
+1 3 2 4 
+
+…
+
+4 3 2 1
+
+### 방법
+
+1. 꼭대기(A): index = i, 오른쪽에서 출발, 가장 높은 곳
+2. 낭떠러지(B): 꼭대기 왼쪽
+3. 낭떠러지보다 큰 수(C): index = j,오른쪽에서 출발 → 오른쪽에서 출발, 최초로 발견된 낭떠러지보다 큰 수
+4. B와 C를 교환(i-1, j)
+5. 가장 오른쪽부터 꼭대기까지 순서를 뒤집음 (i부터 끝까지)
+
+```java
+
+	static void nextPerm(int[] arr) {
+		int a = -1; // 꼭대기
+		int c = 0; // a-1보다 큰 수 찾기
+		for (int i = 1; i < arr.length; i++) {
+			if (arr[i - 1] < arr[i])
+				a = i;
+		}
+
+		if (a == -1) {
+			System.out.println(-1);
+			return;
+		}
+		for (int i = arr.length - 1; i >= 0; i--) {
+			if (arr[i] > arr[a - 1]) {
+				c = i;
+				break;
+			}
+		}
+		// a-1과 c를 swap
+		int tmp = arr[a - 1];
+		arr[a - 1] = arr[c];
+		arr[c] = tmp;
+		// a부터 끝까지 거꾸로
+		for (int i = 0; i < a; i++)
+			System.out.print(arr[i] + " ");
+		for (int i = arr.length - 1; i >= a; i--) {
+			System.out.print(arr[i] + " ");
+		}
+	}
+```
+
+</div>
+</details>
+
 
 
 <details>

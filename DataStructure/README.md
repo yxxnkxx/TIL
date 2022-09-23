@@ -17,7 +17,7 @@ index로 배열의 요소 참조 가능
 
 추가/제거 시 shift 필요
 
-![Untitled](/img/array1.png)
+![Untitled](./img/array1.png)
 
 ## 삽입
 

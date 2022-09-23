@@ -15,17 +15,21 @@ public class Math다음순열 {
 	}
 
 	static boolean np() {
+
 		int a = -1; // 꼭대기
 		int c = 0; // a-1보다 큰 수 찾기
 		for (int i = 1; i < arr.length; i++) {
 			if (arr[i - 1] < arr[i])
 				a = i;
 		}
-		if (a == -1) {
+		int i = arr.length - 1; // 배열의 가장 끝
+		while (i > 0 && arr[i - 1] >= arr[i])
+			i--;
+		if (a == 0) {
 			return false;
 		}
 
-		for (int i = arr.length - 1; i >= 0; i--) {
+		for (i = arr.length - 1; i >= 0; i--) {
 			if (arr[i] > arr[a - 1]) {
 				c = i;
 				break;

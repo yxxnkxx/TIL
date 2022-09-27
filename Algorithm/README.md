@@ -1534,7 +1534,6 @@ x_m \neq y_n 이면 LCS(X_m, Y_n) = max(LCS(X_{m-1}, Y_{n}), LCS(X_{m}, Y_{n-1})
 $$
 
 $$
-
 C_{ij}= \begin{cases} 0 & \text{if i=0 or j=0}  \\ C_{i-1, j-1} + 1& \text{if } i, j>0 \text{ and } x_i=y_j   \\ max\{C_{i-1,j}, C_{i,j-1}\} &\text{if } i, j>0 \text{ and } x_i \neq y_i
 \end{cases}
 $$

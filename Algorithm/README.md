@@ -1328,6 +1328,10 @@ public class MathPowerSet_비트연산자 {
 </div>
 </details>
 
+
+
+
+
 <details>
 <summary>BFS </summary>
 <div markdown="1">
@@ -1468,6 +1472,129 @@ public class DFS {
 ### 수행 시간
 
 Θ(V+E)
+
+</div>
+</details>
+
+</div>
+</details>
+
+
+# Dynamic Programming
+<details>
+<summary> DP </summary>
+<div markdown="1">
+
+
+# Dynamic Programming
+
+## 동적 프로그래밍으로 문제를 풀기 위한 조건
+
+1. 최적부분 구조를 이룬다.
+    
+    최적 부분 구조: 큰 문제의 해답에 그보다 작은 문제의 해답이 포함되어 있는 경우
+    
+2. 재귀적으로 구현했을 때 중복 호출로 심각한 비효율이 발생한다.
+    
+    재귀적 구현에서 중복이 발생하지 않는 경우는 DP xx
+    
+
+## 방식
+
+1. Top-down
+    
+    Memoization, 주로 재귀
+    
+2. Bottom-up
+    
+    아래에서 위로 저장해가면서 해를 구함, for문
+    
+
+최적 부분 구조를 찾아 점화식을 찾는 게 중요함!
+
+
+</div>
+</details>
+
+<details>
+<summary> LCS 최장 공통 부분 순서 </summary>
+<div markdown="1">
+
+
+## LCS (Longest Common Subsequence) 최장 공통 부분 순서
+
+### LCS의 길이 찾기
+
+$$
+x_m = y_n 이면 LCS(X_m, Y_n) = LCS(X_{m-1}, Y_{n-1})+1
+$$
+
+$$
+x_m \neq y_n 이면 LCS(X_m, Y_n) = max(LCS(X_{m-1}, Y_{n}), LCS(X_{m}, Y_{n-1}))
+$$
+
+$$
+
+C_{ij}= \begin{cases} 0 & \text{if i=0 or j=0}  \\ C_{i-1, j-1} + 1& \text{if } i, j>0 \text{ and } x_i=y_j   \\ max\{C_{i-1,j}, C_{i,j-1}\} &\text{if } i, j>0 \text{ and } x_i \neq y_i
+\end{cases}
+$$
+
+[https://velog.io/@emplam27/알고리즘-그림으로-알아보는-LCS-알고리즘-Longest-Common-Substring와-Longest-Common-Subsequence](https://velog.io/@emplam27/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EA%B7%B8%EB%A6%BC%EC%9C%BC%EB%A1%9C-%EC%95%8C%EC%95%84%EB%B3%B4%EB%8A%94-LCS-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-Longest-Common-Substring%EC%99%80-Longest-Common-Subsequence)
+
+문제 예시
+
+[9251번: LCS](https://www.acmicpc.net/problem/9251)
+
+C[i-1][j] = A의 i-1번째, B의 j번째까지의 LCS
+
+Xi와 Yj가 같지 않다면 새로운 값을 추가할 수 없으니, 이전의 LCS값인 C[i-1][j]와 C[i][j-1] 중 큰 값을 LCS로 update한다.
+
+모든 배열을 채우고 최대값이 LCS의 길이가 됨
+
+```java
+String str1 = sc.next();
+String str2 = sc.next();
+int[][] dp = new int[str1.length() + 1][str2.length() + 1];
+
+int ans = 0;
+for (int i = 1; i <= str1.length(); i++)
+	for (int j = 1; j <= str2.length(); j++) {
+		if (str1.charAt(i - 1) == str2.charAt(j - 1)) {
+			dp[i][j] = dp[i - 1][j - 1] + 1;
+			ans = Math.max(dp[i][j], ans);
+			} else {
+			dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+		}
+	}
+```
+
+###  LCS 찾기
+1. LCS배열의 마지막 값에서 시작 → C[i][j]를 C[i-1][j]와 C[i][j-1] 비교
+2. 둘 중 하나(또는 둘 다)와 같다면 X_i와 Y_j는 같지 않다는 의미이므로 LCS에 추가x, 해당 index로 이동
+    
+    둘 다 같지 않다면 X_i와 Y_j는 같다는 의미 → result에 해당하는 문자를 추가,  C[i-1][j-1]로 이동
+    
+3. i와 j 둘 중 하나가 0이 될 때까지 1,2를 반복
+4. result 배열을 역순으로 출력
+
+```java
+char[] result = new char[ans];
+int r = str1.length();
+int c = str2.length();
+int idx = 0;
+while (r >= 1 && c >= 1) {
+	if (dp[r][c] == dp[r - 1][c])
+		r -= 1;
+	else if (dp[r][c] == dp[r][c - 1])
+		c -= 1;
+	else {
+		result[idx] = str1.charAt(r - 1);
+		r -= 1;
+		c -= 1;
+		idx++;
+	}
+}
+```
 
 </div>
 </details>

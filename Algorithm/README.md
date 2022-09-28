@@ -1266,7 +1266,7 @@ public class MathPowerSet_비트연산자 {
 </div>
 </details>
 
-<h1> BFS & DFS </h1>
+<h1> 그래프 </h1>
 <details>
 <summary>BFS & DFS</summary>
 <div markdown="1">
@@ -1480,6 +1480,317 @@ public class DFS {
 </details>
 
 
+
+
+<details>
+<summary>최소 신장 트리</summary>
+<div markdown="1">
+
+
+
+
+
+## 최소 신장 트리 (MST)
+
+신장트리: 그래프의 **모든 정점과 간선**의 부분 집합으로 구성되는 트리
+
+최소신장트리: 신장 트리 중에서 사용된 가중치의 합이 최소인 트리
+
+- 특징
+    - 무방향 가중치 그래프
+    - 그래프의 가중치 합이 최소여야 한다
+    - N개의 정점을 가지는 그래프에 대해 반드시 N-1개의 간선을 사용
+    - 사이클을 포함하면 안된다.
+- 필요성
+    
+    도로망, 통신망, 유통망 등 여러 분야에서 비용을 최소로 해야 그만큼 이익을 본다
+    
+
+### 크루스칼 알고리즘
+
+간선을 하나씩 선택해서 MST를 찾는 알고리즘
+
+1. 최초, 모든 간선을 가중치에 따라 올므차순으로 정렬
+2. 가중치가 가장 낮은 간선부터 선택하면서 트리를 증가
+    - 사이클이 존재하면 다음으로 가중치가 낮은 간선 선택
+        
+        (사이클 존재: 대표가 같으면 사이클(Find-Set))
+        
+3. n-1개의 간선이 선택될 때까지 2)를 반복
+
+```java
+Kruskal(G) {
+	A <- 0 // 0 공집합
+	for vertex v in G.V // G.V 그래프의 정점 집합
+		Make-Set(v) // G.E: 그래프의 간선 집합
+		
+	G.E 간선들을 가중치 w에 의해 정렬
+
+	for 가중치가 가장 낮은 간선 (u,v) in G.E 선택 (n-1개)
+		if (Find-Set(u) != Find-Set(v)) // 사이클 확인
+			A = A U {(u,v)}
+			Union(u,v);
+	return A;
+
+}
+```
+
+### 프림 알고리즘
+
+하나의 정점에서 연결된 간선들 중 하나씩 선택하면서 MST를 만들어가는 방식
+
+cf. 크루스칼: 간선을 하나씩 선택함, 프림: 정점을 선택
+
+1. 임의 정점을 하나 선택해서 시작
+2. 선택한 정점과 인접하는 정점들 중 최소 비용의 간선이 존재하는 정점을 선택
+3. 모든 정점이 선택될 때까지 1, 2를 반복
+
+```java
+MST_Prim(G, r)
+	for u in G.V
+		u.key = ∞
+		u.π = null
+	r.key = 0
+	Q = G.V // 우선순위 큐
+	while (Q != 0) // 빈 q가 아닐 동안
+		u = extract_min(Q) // key 값이 가장 작은 정점
+		visited[u]=true
+		for (v in G.Adj[u]) // u의 인접 정점 v
+			if (!visited[v] and w(u, v) < v.key) // v의 key 값 갱신
+				v.π = u
+				v.key = w(u,v)
+	
+```
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Scanner;
+
+public class Mst_Prim_pq {
+
+	static class Edge implements Comparable<Edge> {
+		int st, ed, cost;
+
+		public Edge(int st, int ed, int cost) {
+			this.st = st;
+			this.ed = ed;
+			this.cost = cost;
+		}
+
+		@Override
+		public int compareTo(Edge o) {
+			return this.cost - o.cost; // 최소 힙
+		}
+
+	}
+
+	static String input = "7 11\r\n" + "0 1 32\r\n" + "0 2 31\r\n" + "0 5 60\r\n" + "0 6 51\r\n" + "1 2 21\r\n"
+			+ "2 4 46\r\n" + "2 6 25\r\n" + "3 4 34\r\n" + "3 5 18\r\n" + "4 5 40\r\n" + "4 6 51\r\n" + "";
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(input);
+		int V = sc.nextInt();
+		int E = sc.nextInt();
+
+		// 인접 리스트
+		List<Edge>[] adjList = new ArrayList[V];
+		for (int i = 0; i < V; i++)
+			adjList[i] = new ArrayList<>();
+
+		for (int i = 0; i < E; i++) {
+			int st = sc.nextInt();
+			int ed = sc.nextInt();
+			int cost = sc.nextInt();
+
+			adjList[st].add(new Edge(st, ed, cost));
+			adjList[ed].add(new Edge(ed, st, cost));
+		} // 입력
+
+		boolean[] visited = new boolean[V];
+
+		PriorityQueue<Edge> pq = new PriorityQueue<>();
+
+		visited[0] = true;
+		// 인접한 v들을 pq에 넣어줌
+		pq.addAll(adjList[0]);
+		int pick = 1;
+		int ans = 0;
+		while (pick < V) {
+			Edge edge = pq.poll();
+			if (visited[edge.ed]) // 이미 뽑은 정점
+				continue;
+
+			ans += edge.cost;
+
+			pq.addAll(adjList[edge.ed]);
+			visited[edge.ed] = true;
+			pick++;
+		}
+		System.out.println(ans);
+
+	}
+
+}
+```
+
+</div>
+</details>
+
+
+<details>
+<summary>최단 경로</summary>
+<div markdown="1">
+
+
+
+## 최단 경로
+
+간선의 가중치가 있는 그래프에서 두 정점 사이의 경로들 중 간선의 가중치의 합이 최소인 경로
+
+- 하나의 시작 정점에서 끝 정점까지의 최단 경로
+
+다익스트라 (dijkstra): 음의 가중치 허용x
+
+벨만-포드(Bellman-Ford) : 음의 가중치 허용o
+
+- 모든 정점들에 대한 최단 경로
+
+플로이드-워샬(Floyd-Warshall) 알고리즘
+
+### 1. Dijkstra 알고리즘
+
+시작 정점에서 거리가 최소인 정점을 선택해 나가면서 최단 경로를 구하는 방식
+
+탐욕 기법을 사용 - 프림 알고리즘과 유사
+
+시작 정점(s)에서 끝 정점(t)까지의 최단 경로에 정점 x가 존재
+
+이때 최단 경로는 s에서 x까지의 최단 경로와 x에서 t까지으 ㅣ최단 경로로 구성됨
+
+s→t = s→x + x→t 
+
+시간복잡도 : `O(ElogV)`
+
+**과정** 
+
+1. 시작 정점을 입력 받음
+2. 거리를 저장할 배열을 ∞로 초기화, 시작점에서 연결된 정점들의 비용을 기록해둠
+3. 최단 거리가 가장 짧은 정점을 집합에 포함
+4. 아직 방문하지 않은 점들이 가지고 있는 거리 값과 현재 정점에서 방문하지 않은 정점까지의 가중치의 합이 작다면 update
+5. 모든 정점을 방문할 때까지 3,4를 반복
+
+```java
+MST_Dijkstra(G, r)
+	for u in G.V
+		d[u] = ∞
+	d[r]=0
+	
+	Q = G.V // 우선순위 큐
+	while (Q != 0) // 빈 q가 아닐 동안
+		u = extract_min(Q) // key 값이 가장 작은 정점
+		visited[u]=true
+		for (v in G.Adj[u]) // u의 인접 정점 v
+			if (!visited[v] and  d[v] > d[u] + weight(u, v))  // 거리 갱신
+					d[v] = d[u]+weight(u,v)
+					prev[v]=u;
+			
+```
+
+```java
+private static void dijkstra(int st) {
+
+		PriorityQueue<Node> pq = new PriorityQueue<>();
+		boolean[] visited = new boolean[V];
+
+		pq.add(new Node(st, 0));
+		dist[st] = 0;
+
+		while (!pq.isEmpty()) {
+			Node curr = pq.poll();
+
+			visited[curr.v] = true;
+			// 연결된 노드
+			for (Node node : adjList[curr.v])
+				if (!visited[node.v] && dist[node.v] > dist[curr.v] + node.weight) {
+					dist[node.v] = dist[curr.v] + node.weight;
+					pq.add(new Node(node.v, dist[node.v]));
+				}
+
+		}
+
+	}
+```
+
+### 2. 벨만-포드 알고리즘
+
+간선의 가중치가 음의 값을 허용하는 실수인 경우의 최단 경로 알고리즘
+
+(정점 - 1)번 반복하며 모든 간선을 전부 확인하면서 모든 노드간의 최단 거리를 구해나간다. (다익스트라와 차이)
+
+시간 복잡도: `O(VE)`
+
+```java
+BellmanFord(G, r)
+	for u in V
+		d[u] = ∞
+	d[r] = 0;
+	for (i=1 to V-1)
+		for each (u, v) in E // (변동이 생긴 점에 대해서 확인하면 좀 더 효율적)
+			if (d[u] + weight(u, v) < d[v])
+				d[v] = d[u]+weight(u, v)
+				prev[v] = u;
+	
+	// 음의 사이클 존재 확인
+	for each (u, v) in E
+			if (d[u]+ w(u, v) < d[v]) print("음의 사이클 존재")
+```
+
+i번째 루프가 끝나면 최대 i개의 간선을 사용해서 이를 수 있는 최단 경로가 계산됨
+
+가능한 간선의 개수가 V-1이기 때문에 V-1까지 탐색한다
+
+벨만-포드 알고리즘은 음의 가중치를 허용하지만, 음의 사이클이 존재하는 경우는 최단 경로를 구할 수 없다.
+
+V-1번 탐색을 통해 모든 간선을 확인한 후에도 `d[u]+ w(u, v) < d[v]`라면 음의 사이클이 존재하는 것을 확인할 수 있다.
+
+```java
+static boolean bellmanFord(int r) {
+		dis[r] = 0;
+
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < adjList.size(); j++) {
+				int st = adjList.get(j).start;
+				int ed = adjList.get(j).end;
+				long weight = adjList.get(j).weight;
+				if (dis[st] == INF)
+					continue;
+
+				if (dis[ed] > dis[st] + weight) {
+					dis[ed] = dis[st] + weight;
+					if (i == N - 1)
+						return false; // cycle
+				}
+			}
+		}
+
+		return true;
+
+	}
+```
+
+
+
+
+
+
+
+
+</div>
+</details>
+
+
 # Dynamic Programming
 <details>
 <summary> DP </summary>
@@ -1513,6 +1824,8 @@ public class DFS {
 최적 부분 구조를 찾아 점화식을 찾는 게 중요함!
 
 
+
+
 </div>
 </details>
 
@@ -1534,7 +1847,6 @@ x_m \neq y_n 이면 LCS(X_m, Y_n) = max(LCS(X_{m-1}, Y_{n}), LCS(X_{m}, Y_{n-1})
 $$
 
 $$
-
 C_{ij}= \begin{cases} 0 & \text{if i=0 or j=0}  \\ C_{i-1, j-1} + 1& \text{if } i, j>0 \text{ and } x_i=y_j   \\ max\{C_{i-1,j}, C_{i,j-1}\} &\text{if } i, j>0 \text{ and } x_i \neq y_i
 \end{cases}
 $$
@@ -1598,6 +1910,7 @@ while (r >= 1 && c >= 1) {
 
 </div>
 </details>
+
 
 </div>
 </details>

@@ -1266,6 +1266,109 @@ public class MathPowerSet_비트연산자 {
 </div>
 </details>
 
+
+
+<h1> 집합 </h1>
+
+<details>
+<summary>유니온 파인드</summary>
+<div markdown="1">
+
+
+# 서로소 집합(Disjoint-sets)
+
+서로 중복 포함된 원소가 없는 집합들 → 교집합이 없다
+
+집합에 속한 하나의 특정 멤버를 통해 각 집합들을 구분, 이를 대표자(representative)라고 함
+
+## 연산
+
+Make-Set(x): 원소 x로만 구성된 집합을 만든다
+
+Find-Set(x): 원소 x를 가진 집합을 알아낸다
+
+Union(x, y): 원소 x를 가진 집합과 원소 y를 가진 집ㅎ바을 하나로 합친다
+
+## 표현 방법
+
+연결 리스트, 트리
+
+### 1. 연결 리스트
+
+같은 집합의 원소들은 하나의 연결리스트로 관리
+
+연결리스트의 맨 앞의 원소를 집합의 대표원소로 삼음
+
+각 원소는 집합의 대표원소를 가리키는 링크를 갖는다
+
+### 2. 트리
+
+하나의 집합을 하나의 트리로 표현
+
+자식 노드가 부모노드를 가리키며 루트노드가 대표자가 됨
+
+```java
+Make-Set(x) {
+	p[x] <- x;
+}
+
+Find-Set(x) {
+	if (x==p[x]) return x;
+	else
+		return Find-Set(p[x])
+}
+
+Union(x, y) {
+	p[Find-Set(y)] <- Find-Set(x);
+}
+```
+
+## 연산의 효율을 높이기
+
+### 1. Rank를 이용한 Union
+
+- 각 노드는 자신을 루트로 하는 subtree의 높이를 랭크(rank)라는 이름으로 저장
+- 두 집합을 합칠 때 rank가 낮은 집합을 rank가 높은 집합에 붙임
+
+```java
+Make-Set(x) {
+	p[x] = x;
+	rank[x] = 0;
+}
+
+Union(x,y) {
+	x` = Find-Set(x);
+	y` = Find-Set(y);
+	if (rank[x`] > rank[y`])
+		p[y`] = x`;
+	else {
+		p[x`] = y`;
+		if (rank[x`] = rank[y`])
+			rank[y`] = rank[y`]+1;
+
+	}	
+}
+
+```
+
+### 2. 경로 압축(Path compression)
+
+Find-Set을 행하는 과정에서 만나는 모든 노드들이 직접 root를 가리키도록 포인터를 바꿔줌
+
+여러 번 과정을 거칠 때 효율적
+
+```java
+Find-Set(x) {
+	if (p[x]!=x)
+		p[x] = Find-Set(p[x]);
+	return p[x];
+}
+```
+
+</div>
+</details>
+
+
 <h1> 그래프 </h1>
 <details>
 <summary>BFS & DFS</summary>

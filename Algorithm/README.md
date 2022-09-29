@@ -1274,6 +1274,7 @@ public class MathPowerSet_비트연산자 {
 <summary>유니온 파인드</summary>
 <div markdown="1">
 
+# 유니온 파인드 (Union-Find)
 
 ## 서로소 집합(Disjoint-sets)
 
@@ -1287,7 +1288,7 @@ Make-Set(x): 원소 x로만 구성된 집합을 만든다
 
 Find-Set(x): 원소 x를 가진 집합을 알아낸다
 
-Union(x, y): 원소 x를 가진 집합과 원소 y를 가진 집ㅎ바을 하나로 합친다
+Union(x, y): 원소 x를 가진 집합과 원소 y를 가진 집합을 하나로 합친다
 
 ## 표현 방법
 

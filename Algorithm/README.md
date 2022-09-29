@@ -1275,7 +1275,7 @@ public class MathPowerSet_비트연산자 {
 <div markdown="1">
 
 
-# 서로소 집합(Disjoint-sets)
+## 서로소 집합(Disjoint-sets)
 
 서로 중복 포함된 원소가 없는 집합들 → 교집합이 없다
 

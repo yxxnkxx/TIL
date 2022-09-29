@@ -53,7 +53,7 @@ public class Mst_Prim_pq {
 		// 인접한 v들을 pq에 넣어줌
 		pq.addAll(adjList[0]);
 		int pick = 1;
-		int ans = 0;
+		long ans = 0;
 		while (pick < V) {
 			Edge edge = pq.poll();
 			if (visited[edge.ed]) // 이미 뽑은 정점

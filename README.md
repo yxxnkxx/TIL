@@ -28,7 +28,7 @@
 
 
 
-<h1> Computer Sciencte </h1>
+<h1> Computer Science </h1>
 
 
 [DataStructure](./DataStructure/README.md)

@@ -2082,6 +2082,72 @@ DFS와 동일 - $\\theta(V+E)$
 </div>
 </details>
 
+
+<details>
+<summary> 플로이드-워샬 알고리즘 </summary>
+<div markdown="1">
+
+## 플로이드-워샬 알고리즘
+
+모든 쌍 최단 경로 알고리즘: 모든 정점 쌍 사이의 최단 경로를 구하는 방법
+
+### 단순 최단 경로 알고리즘
+
+![Untitled](./img/floydwarshall1.png)
+
+m개의 간선을 사용해서 i에서 j까지 이르는 최단거리
+
+모든 정점 k에 대해 최대 m-1개의 간선을 사용해서 i에서 k까지 이르는 최단거리 $d_{ik}^{m-1}$에다가 $w_{kj}$를 더한 값을 구하고, 이 중 가장 짧은 것을 택함
+
+```java
+for (i=1 to n)
+		for (j=1 to n)
+		d(i to j, k=0) = w[i][j];
+for (m=2 to n-1)
+	for (i=1 to n)
+		for (j=1 to n)
+			d(i to j, k=m) = min(d(i to k, k=m-1) + w[k][j])
+	
+```
+
+시간 복잡도: $\theta(n^4)$
+
+### 플로이드-워샬
+
+$d_{ij}^{k}$ = 정점 {1, 2, … , k}에 속하는 정점들만 중간 정점으로 거쳐서 i에서 j에 이르는 최단 거리
+
+![Untitled](./img/floydwarshall2.png)
+
+case 1: 최단 경로 p에 정점 k가 포함
+
+- i→k, k→j 최단 경로니까 i→k + k→j 가 최단 경로가 됨
+
+case 2: 최단 경로 p에 정점 k가 포함x
+
+이 경로는 {1, 2, … ,k-1} 까지의 정점만 사용함 = $d_{ij}^{k-1}$
+
+ 
+
+```java
+FloydWarshall(G) {
+	for (i=1 to n)
+		for (j=1 to n)
+			d(i to j, k=0) = w[i][j];
+	for (k=1 to n)
+		for (i=1 to n)
+			for (j=1 to n)
+				d(i to j, k) = min(d(i to j, k-1), d(i to k, k-1) + d(k to j, k-1));
+}
+```
+
+</div>
+</details>
+
+
+
+
+
+
 # Dynamic Programming
 <details>
 <summary> DP </summary>

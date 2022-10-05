@@ -1963,6 +1963,125 @@ static boolean bellmanFord(int r) {
 </details>
 
 
+<details>
+<summary> 위상 정렬 </summary>
+<div markdown="1">
+
+## 위상 정렬
+
+**사이클이 없는 유향 그래프** G=(V,E)에서 V의 모든 정점을 정렬
+
+-   간선 (i, j)가 존재하면 정점 i는 반드시 j보다 앞에 위치
+
+### 방식 1: 큐 활용
+
+```
+topologicalSort(G, V) {
+    for i <- 1 to n {
+        1. 진입 간선이 없는 정점 u 선택
+        A[i] <- u;
+        2. 정점 u와 u의 진출 간선들을 모두 제거
+    }
+}
+```
+
+백준 2252 [https://www.acmicpc.net/problem/2252](https://www.acmicpc.net/problem/2252)
+
+```
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+		N = sc.nextInt();
+		M = sc.nextInt();
+		int[] indegree = new int[N + 1];
+		adjList = new ArrayList[N + 1];
+		for (int i = 0; i <= N; i++)
+			adjList[i] = new ArrayList<>();
+		visited = new boolean[N + 1];
+		ans = new ArrayList<>();
+		for (int i = 0; i < M; i++) {
+			int st = sc.nextInt();
+			int ed = sc.nextInt();
+			adjList[st].add(ed);
+			indegree[ed]++;
+		}
+
+		// 방식1 큐
+		// indegree가 0인 애들을 큐에 추가
+		Queue<Integer> q = new LinkedList<>();
+		for (int i = 1; i <= N; i++)
+			if (indegree[i] == 0)
+				q.add(i);
+		StringBuilder sb = new StringBuilder();
+		while (!q.isEmpty()) {
+			int tmp = q.poll();
+			sb.append(tmp + " ");
+			for (int j = 0; j < adjList[tmp].size(); j++) {
+				int next = adjList[tmp].get(j);
+				indegree[next]--;
+				if (indegree[next] == 0)
+					q.add(next);
+			}
+
+		}
+		System.out.println(sb);
+
+	}
+```
+
+### 시간 복잡도
+
+for 루프=n번 반복
+
+매 반복때마다 1개의 정점 선택, 해당 정점에 연결된 진출 간선이 모두 제거
+
+→ $\\theta(V+E)$
+
+## 방식 2: dfs 활용
+
+```
+// dfs 활용
+topologicalSort2(G) {
+    for each v in V
+        visited[v]=false;
+    for each v in V
+        if (!visited[v]) DFS-TS(v);
+}
+
+DFS-TS(v) {
+    visited[v]=true;
+    for each x in L(v)
+        if (!visited[v]) DFS-TS(x);
+    연결 리스트 R의 맨 앞에 정점 v를 삽입
+}
+R의 역순=위상 정렬 순서
+```
+
+```
+		for (int i = 1; i <= N; i++)
+			if (!visited[i])
+				dfs(i);
+		for (int i = ans.size() - 1; i >= 0; i--)
+			System.out.print(ans.get(i) + " ");
+		System.out.println();
+
+	}
+
+	static void dfs(int i) {
+		visited[i] = true;
+		for (int j = 0; j < adjList[i].size(); j++)
+			if (!visited[adjList[i].get(j)])
+				dfs(adjList[i].get(j));
+		ans.add(i);
+	}
+```
+
+### 시간 복잡도
+
+DFS와 동일 - $\\theta(V+E)$
+
+</div>
+</details>
+
 # Dynamic Programming
 <details>
 <summary> DP </summary>

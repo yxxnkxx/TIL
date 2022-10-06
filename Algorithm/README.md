@@ -2082,10 +2082,6 @@ DFS와 동일 - $\\theta(V+E)$
 </div>
 </details>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 02a905e12331ad19fd5a16b12edaaaa1754d96c8
 <details>
 <summary> 플로이드-워샬 알고리즘 </summary>
 <div markdown="1">
@@ -2096,91 +2092,6 @@ DFS와 동일 - $\\theta(V+E)$
 
 ### 단순 최단 경로 알고리즘
 
-<<<<<<< HEAD
-
-![##_Image|kage@lMkZR/btrNSW3QnY5/jCXHWk8nNbZtCwKhVrY1f1/img.png|CDM|1.3|{"originWidth":329,"originHeight":51,"style":"alignCenter","filename":"floydwarshall2.png"}_##](./img/floydwarshall1.png)
-
-m개의 간선을 사용해서 i에서 j까지 이르는 최단거리
-
-모든 정점 k에 대해 최대 m-1개의 간선을 사용해서 i에서 k까지 이르는 최단거리 $d\_{ik}^{m-1}$에다가 $w\_{kj}$를 더한 값을 구하고, 이 중 가장 짧은 것을 택함
-
-```
-for (i=1 to n)
-        for (j=1 to n)
-        d(i to j, k=0) = w[i][j];
-for (m=2 to n-1)
-    for (i=1 to n)
-        for (j=1 to n)
-            d(i to j, k=m) = min(d(i to k, k=m-1) + w[k][j])
-```
-
-시간 복잡도: $\\theta(n^4)$
-
-### 플로이드-워샬
-
-$d\_{ij}^{k}$ = 정점 {1, 2, … , k}에 속하는 정점들만 중간 정점으로 거쳐서 i에서 j에 이르는 최단 거리
-
-![##_Image|kage@lMkZR/btrNSW3QnY5/jCXHWk8nNbZtCwKhVrY1f1/img.png|CDM|1.3|{"originWidth":329,"originHeight":51,"style":"alignCenter","filename":"floydwarshall2.png"}_##](./img/floydwarshall2.png)
-
-case 1: 최단 경로 p에 정점 k가 포함
-
--   i→k, k→j 최단 경로니까 i→k + k→j 가 최단 경로가 됨
-
-case 2: 최단 경로 p에 정점 k가 포함x
-
-이 경로는 {1, 2, … ,k-1} 까지의 정점만 사용함 = $d\_{ij}^{k-1}$
-
-```
-FloydWarshall(G) {
-    for (i=1 to n)
-        for (j=1 to n)
-            d(i to j, k=0) = w[i][j];
-    for (k=1 to n)
-        for (i=1 to n)
-            for (j=1 to n)
-                d(i to j, k) = min(d(i to j, k-1), d(i to k, k-1) + d(k to j, k-1));
-}
-```
-
-관련 문제 - [https://www.acmicpc.net/problem/11404](https://www.acmicpc.net/problem/11404)
-
-
-```
-import java.util.Arrays;
-import java.util.Scanner;
-
-public class Main {
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-
-		int N = sc.nextInt();
-		int M = sc.nextInt();
-		int[][] map = new int[N + 1][N + 1];
-		for (int i = 1; i <= N; i++)
-			Arrays.fill(map[i], 10000001);
-		for (int i = 0; i < M; i++) {
-			int st = sc.nextInt();
-			int ed = sc.nextInt();
-			int w = sc.nextInt();
-			map[st][ed] = Math.min(map[st][ed], w);
-		}
-		for (int k = 1; k <= N; k++)
-			for (int i = 1; i <= N; i++)
-				for (int j = 1; j <= N; j++)
-					map[i][j] = Math.min(map[i][j], map[i][k] + map[k][j]);
-		StringBuilder sb = new StringBuilder();
-		for (int i = 1; i <= N; i++) {
-			map[i][i] = 0;
-			for (int j = 1; j <= N; j++) {
-				if (map[i][j] == 10000001)
-					map[i][j] = 0;
-				sb.append(map[i][j]).append(" ");
-			}
-			sb.append("\n");
-		}
-		System.out.print(sb);
-	}
-=======
 ![Untitled](./img/floydwarshall1.png)
 
 m개의 간선을 사용해서 i에서 j까지 이르는 최단거리
@@ -2225,7 +2136,7 @@ FloydWarshall(G) {
 		for (i=1 to n)
 			for (j=1 to n)
 				d(i to j, k) = min(d(i to j, k-1), d(i to k, k-1) + d(k to j, k-1));
->>>>>>> 02a905e12331ad19fd5a16b12edaaaa1754d96c8
+
 }
 ```
 
@@ -2234,12 +2145,6 @@ FloydWarshall(G) {
 
 
 
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 02a905e12331ad19fd5a16b12edaaaa1754d96c8
 # Dynamic Programming
 <details>
 <summary> DP </summary>

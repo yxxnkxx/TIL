@@ -7,4 +7,4 @@
 
 - [Spring 핵심 원리 - 객체 지향 원리 적용](./markdown/spring_oop.md)
 
-- [스프링 컨테이너와 빈](./markdown/spring_container%20bean)
+- [스프링 컨테이너와 빈](./markdown/spring_container%20bean.md)

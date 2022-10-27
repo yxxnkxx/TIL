@@ -12,3 +12,5 @@
 - [싱글톤 컨테이너](./markdown/spring_singletonContainer.md)
 
 - [컴포넌트 스캔](./markdown/spring_componentScan.md)
+
+- [의존관계 자동주입](./markdown/spring_autoDI.md)

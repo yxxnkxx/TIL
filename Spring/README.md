@@ -16,3 +16,5 @@
 - [의존관계 자동주입](./markdown/spring_autoDI.md)
 
 - [빈 생명주기 콜백](./markdown/spring_beanlifeCycle.md)
+
+- [빈 스코프](./markdown/sprin_beanScope.md)

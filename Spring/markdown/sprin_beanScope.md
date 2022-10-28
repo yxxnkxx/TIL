@@ -178,17 +178,24 @@ ObjectProvider는 프로토타입을 생성해주는 것이 아니라, **빈을 
 request scope의 생성, 소멸
 
 [b7aef91e-d1f4-4558-abe2-0b847559b006] request scope bean create: hello.core.common.MyLogger@42c13350
+
 [a7c1f568-ebb9-4b4a-a04b-18129eb09ef9] request scope bean create: hello.core.common.MyLogger@5fcce353
+
 [b7aef91e-d1f4-4558-abe2-0b847559b006] [[http://localhost:8080/log-demo](http://localhost:8080/log-demo)] controller test
+
 [b7aef91e-d1f4-4558-abe2-0b847559b006] [[http://localhost:8080/log-demo](http://localhost:8080/log-demo)] service id = testId
+
 [b7aef91e-d1f4-4558-abe2-0b847559b006] request scope bean close: hello.core.common.MyLogger@42c13350
+
 [a7c1f568-ebb9-4b4a-a04b-18129eb09ef9] [[http://localhost:8080/log-demo](http://localhost:8080/log-demo)] controller test
+
 [a7c1f568-ebb9-4b4a-a04b-18129eb09ef9] [[http://localhost:8080/log-demo](http://localhost:8080/log-demo)] service id = testId
+
 [a7c1f568-ebb9-4b4a-a04b-18129eb09ef9] request scope bean close: hello.core.common.MyLogger@5fcce353
 
 **각각의 생명주기에 따라 생성-소멸되는 것을 확인할 수 있음**
 
-`ObjectProvider.getObject()` 를 `LogDemoController`, `LogDemoService` 각각 한 번씩 따로호출해도 같은 HTTP 요청이면 같은 스프링 빈 반환
+`ObjectProvider.getObject()` 를 `LogDemoController`, `LogDemoService` 각각 한 번씩 따로호출해도 **같은 HTTP 요청**이면 같은 스프링 빈 반환
 
 ---
 

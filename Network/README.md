@@ -35,3 +35,5 @@
 - [4. HTTP 메서드](./http%20web/04%20http%20method.md)
 - [5. HTTP 메서드 활용](./http%20web/05%20http%20method%20%ED%99%9C%EC%9A%A9.md)
 - [6. HTTP 상태 코드](./http%20web/06%20http%20%EC%83%81%ED%83%9C%EC%BD%94%EB%93%9C.md)
+- [7. HTTP 헤더 - 일반 헤더](./http%20web/07%20http%20%ED%97%A4%EB%8D%94-%EC%9D%BC%EB%B0%98.md)
+- [8. HTTP 헤더2 - 캐시와 조건부 요청](./http%20web/08%20http%20%ED%97%A4%EB%8D%94-%EC%BA%90%EC%8B%9C%EC%A1%B0%EA%B1%B4%EB%B6%80%EC%9A%94%EC%B2%AD.md)

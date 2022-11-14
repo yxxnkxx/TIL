@@ -33,3 +33,5 @@
 - [2. URI](./http%20web/02%20URI.md)
 - [3. HTTP 기본](./http%20web/03%20network%20basic.md)
 - [4. HTTP 메서드](./http%20web/04%20http%20method.md)
+- [5. HTTP 메서드 활용](./http%20web/05%20http%20method%20%ED%99%9C%EC%9A%A9.md)
+- [6. HTTP 상태 코드](./http%20web/06%20http%20%EC%83%81%ED%83%9C%EC%BD%94%EB%93%9C.md)

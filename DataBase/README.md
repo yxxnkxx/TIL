@@ -301,3 +301,5 @@ public static void close(Connection conn, PreparedStatement pstmt) {
 - [관계 데이터 모델](./%EA%B4%80%EA%B3%84%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%AA%A8%EB%8D%B8.md)
 
 - [관계 데이터 연산](./%EA%B4%80%EA%B3%84%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%97%B0%EC%82%B0.md)
+
+- [정규화](./09%20%EC%A0%95%EA%B7%9C%ED%99%94/09%20%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%80%E1%85%B2%E1%84%92%E1%85%AA%20e6f7d5209f274ab4a623f8eade1665f4.md)

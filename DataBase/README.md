@@ -305,3 +305,5 @@ public static void close(Connection conn, PreparedStatement pstmt) {
 - [정규화](./09%20%EC%A0%95%EA%B7%9C%ED%99%94/09%20%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%80%E1%85%B2%E1%84%92%E1%85%AA%20e6f7d5209f274ab4a623f8eade1665f4.md)
 
 - [회복과 병행제어](./10%20%ED%9A%8C%EB%B3%B5%EA%B3%BC%20%EB%B3%91%ED%96%89%EC%A0%9C%EC%96%B4/10%20%ED%9A%8C%EB%B3%B5%EA%B3%BC%20%EB%B3%91%ED%96%89%EC%A0%9C%EC%96%B4.md)
+
+- [보안과 권한관리](./11%20%EB%B3%B4%EC%95%88%EA%B3%BC%20%EA%B6%8C%ED%95%9C%EA%B4%80%EB%A6%AC.md)

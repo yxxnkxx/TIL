@@ -309,3 +309,5 @@ public static void close(Connection conn, PreparedStatement pstmt) {
 - [보안과 권한관리](./11%20%EB%B3%B4%EC%95%88%EA%B3%BC%20%EA%B6%8C%ED%95%9C%EA%B4%80%EB%A6%AC.md)
 
 - [데이터베이스 응용 기술](./12%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%8B%E1%85%B3%E1%86%BC%E1%84%8B%E1%85%AD%E1%86%BC%20%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%20363cddf7f116400985e4a127fba9aa33.md)
+
+- [데이터과학과 빅데이터](./13%20%EB%8D%B0%EC%9D%B4%ED%84%B0%EA%B3%BC%ED%95%99%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0.md)

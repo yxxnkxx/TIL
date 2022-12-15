@@ -69,9 +69,9 @@
   - interactive한 방식 (입력 → 바로 화면에 결과가 나옴)
   - 각 사용자가 컴퓨터로부터 서비스를 제공받는 시간을 숫자로 표시
 
-![Untitled](1%20Introduction%20to%20Operatin%20Systems%2000c13cc86a06439aa59b53477bc1aa54/Untitled%202.png)
+  - ![Untitled](1%20Introduction%20to%20Operatin%20Systems%2000c13cc86a06439aa59b53477bc1aa54/Untitled%202.png)
 
-- 목적: 사람이 느끼기에 빠르게 제공 + 주어진 자원을 최대한 활용
+  - 목적: 사람이 느끼기에 빠르게 제공 + 주어진 자원을 최대한 활용
 
 - 실시간(Realtime OS)
   - 정해진 시간 안에 어떠한 일이 반드시 종료됨이 보장되어야 하는 실시간 시스템을 위한 OS (데드라인 O)

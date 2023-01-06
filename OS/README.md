@@ -12,4 +12,4 @@
 
 - [4. Process Management](OSreadme/4%20Process%20Management%208accd9bc4f0b422e81c64623792cd115.md)
 
-- [5. CPU Scheduling](OSReadme/5%20CPU%20Scheduling%2032e7ae89cbbf4233ac31877708adcc7d.md)
+- [5. CPU Scheduling](OSreadme/5%20CPU%20Scheduling%2032e7ae89cbbf4233ac31877708adcc7d.md)

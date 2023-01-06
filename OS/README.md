@@ -9,3 +9,7 @@
 - [2. System Structure & Program Execution](OSreadme/2%20System%20Structure%20%26%20Program%20Execution%2070fcd35ca4414c0fbc09d375f0d50601.md)
 
 - [3. Process](OSreadme/3%20Process%207646e0cd7b7e44bbbc82e1533770d54f.md)
+
+- [4. Process Management](OSreadme/4%20Process%20Management%208accd9bc4f0b422e81c64623792cd115.md)
+
+- [5. CPU Scheduling](OSReadme/5%20CPU%20Scheduling%2032e7ae89cbbf4233ac31877708adcc7d.md)

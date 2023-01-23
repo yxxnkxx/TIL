@@ -13,3 +13,7 @@
 - [4. Process Management](OSreadme/4%20Process%20Management%208accd9bc4f0b422e81c64623792cd115.md)
 
 - [5. CPU Scheduling](OSreadme/5%20CPU%20Scheduling%2032e7ae89cbbf4233ac31877708adcc7d.md)
+
+- [6. Process Synchronization](OSreadme/6%20Process%20Synchronization%20d46e429595c34e63b90ae225368f698c.md)
+
+- [7. Deadlock](OSreadme/7%20Deadlock%202239c7a156fa44209590c18ed78b14ce.md)
